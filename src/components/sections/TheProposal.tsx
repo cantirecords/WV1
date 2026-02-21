@@ -60,6 +60,7 @@ export default function TheProposal({ onNext }: { onNext: () => void }) {
                         <EnvelopeBtn
                             onClick={onNext}
                             text="Nuestra Invitación"
+                            variant="premium"
                         />
                     </motion.div>
                 </div>
