@@ -16,7 +16,6 @@ function WeddingExperience() {
     const guestName = searchParams.get("guest") || "Familia";
 
     const next = () => {
-        window.scrollTo({ top: 0, behavior: "instant" });
         setStep(s => s + 1);
     };
 
@@ -33,13 +32,17 @@ function WeddingExperience() {
             {/* Music starts playing after the first interaction or intro */}
             <MusicPlayer isPlaying={step > 0} />
 
-            <AnimatePresence mode="wait">
+            <AnimatePresence
+                mode="wait"
+                onExitComplete={() => window.scrollTo({ top: 0, behavior: "instant" })}
+            >
                 <motion.div
                     key={step}
-                    initial={{ opacity: 0, scale: 1.05 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.95 }}
-                    transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.8, ease: "easeInOut" }}
+                    className="w-full min-h-screen"
                 >
                     {steps[step]}
                 </motion.div>
