@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import EnvelopeBtn from "../EnvelopeBtn";
+import SwipeButton from "../SwipeButton";
 
 export default function TheProposal({ onNext }: { onNext: () => void }) {
     return (
@@ -57,8 +57,8 @@ export default function TheProposal({ onNext }: { onNext: () => void }) {
                         viewport={{ once: true }}
                         transition={{ duration: 1, delay: 1.5 }}
                     >
-                        <EnvelopeBtn
-                            onClick={onNext}
+                        <SwipeButton
+                            onOpen={onNext}
                             text="Nuestra Invitación"
                             variant="premium"
                         />

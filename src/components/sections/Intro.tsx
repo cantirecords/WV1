@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import EnvelopeBtn from "../EnvelopeBtn";
+import SwipeButton from "../SwipeButton";
 import { Turtle } from "lucide-react";
 
 interface IntroProps {
@@ -107,27 +107,26 @@ export default function Intro({ onNext, guestName }: IntroProps) {
                     </div>
 
                     <motion.div
-                        className="relative flex flex-col items-center gap-6 pointer-events-auto cursor-pointer"
-                        onClick={onNext}
-                        whileHover="hover"
-                        whileTap="tap"
+                        className="relative flex flex-col items-center gap-8 pointer-events-auto"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 1 }}
                     >
                         {/* Turtle Guide */}
                         <motion.div
                             animate={{
                                 y: [10, 0, 10],
-                                rotate: [0, 5, -5, 0]
                             }}
                             transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
                             className="text-wedding-gold/80 flex flex-col items-center gap-2"
                         >
                             <Turtle size={48} strokeWidth={1} className="drop-shadow-[0_0_10px_rgba(197,160,89,0.5)]" />
-                            <span className="font-sans text-[8px] tracking-[0.4em] uppercase opacity-60">Toca para abrir</span>
+                            <span className="font-sans text-[8px] tracking-[0.4em] uppercase opacity-60">Desliza para abrir</span>
                         </motion.div>
 
-                        <EnvelopeBtn
-                            onClick={onNext}
-                            text="Nuestra Historia"
+                        <SwipeButton
+                            onOpen={onNext}
+                            text="Desliza para abrir"
                         />
                     </motion.div>
                 </motion.div>
