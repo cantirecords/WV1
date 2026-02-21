@@ -9,19 +9,19 @@ export default function StoryTimeline({ onNext }: { onNext: () => void }) {
             year: "Raíces",
             title: "Dos Caminos, Un Destino",
             text: "Él, de Honduras 🇭🇳, siempre llevando la pasión por el fútbol y el ritmo de la música en su corazón. Ella, de El Salvador 🇸🇻, con un espíritu sereno amante del mar y la belleza de las tortugas. Llegaron pequeños a este país, con sueños que apenas comenzaban a entrelazarse.",
-            img: "/IMG_0948.JPG"
+            img: "/WV1/IMG_0948.JPG"
         },
         {
             year: "7 Años",
             title: "Desde Pequeños",
             text: "Crecieron de la mano, navegando diferentes etapas y aprendiendo a armonizar sus vidas. Su amor pasó de ser una ilusión de jóvenes a un propósito maduro, listo para construir su propio hogar.",
-            img: "/IMG_0950.JPG"
+            img: "/WV1/IMG_0950.JPG"
         },
         {
             year: "Hoy",
             title: "Nuestros 20s",
             text: "Después de todo lo vivido, cada reto superado es una victoria de fe. Hoy más que nunca entienden que Dios, con una sabiduría infinita, dibujó un plan perfecto para unirlos para siempre.",
-            img: "/IMG_0953.JPG"
+            img: "/WV1/IMG_0953.JPG"
         }
     ];
 
