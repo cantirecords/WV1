@@ -1,0 +1,161 @@
+@import "tailwindcss";
+
+@theme {
+  --color-wedding-gold: #c5a059;
+  --color-wedding-gold-light: #f3e7ad;
+  --color-wedding-gold-dark: #8e6d31;
+  --font-sans: var(--font-inter);
+  --font-serif: var(--font-playfair);
+  --font-cursive: var(--font-pinyon);
+}
+
+:root {
+  --gold-gradient: linear-gradient(135deg, #f3e7ad 0%, #c5a059 50%, #8e6d31 100%);
+}
+
+body {
+  @apply bg-[#050505] text-white antialiased overflow-x-hidden;
+}
+
+/* ─── Typography ───────────────────── */
+.font-serif {
+  font-family: var(--font-serif), serif;
+}
+
+.font-sans {
+  font-family: var(--font-sans), sans-serif;
+}
+
+.font-cursive {
+  font-family: var(--font-cursive), cursive;
+}
+
+.gold-text {
+  background: var(--gold-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Shimmer effect ────────────────── */
+@keyframes shimmer-move {
+  0% {
+    background-position: -200% center;
+  }
+
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.gold-shimmer-text {
+  background: linear-gradient(90deg,
+      #8e6d31 0%,
+      #e6c97a 20%,
+      #fef9c3 30%,
+      #e6c97a 40%,
+      #c5a059 60%,
+      #fef3c7 70%,
+      #c5a059 80%,
+      #8e6d31 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer-move 6s linear infinite;
+}
+
+/* ─── Glassmorphism ─────────────────── */
+.glass {
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(197, 160, 89, 0.1);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+}
+
+/* ─── Scroll Effects ────────────────── */
+.parallax-container {
+  perspective: 1000px;
+}
+
+.parallax-layer {
+  transform-style: preserve-3d;
+}
+
+/* ─── Custom Scrollbar ──────────────── */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-wedding-gold);
+  border-radius: 10px;
+}
+
+/* ─── Animations ────────────────────── */
+@keyframes kenburns {
+  0% {
+    transform: scale(1.1);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.animate-kenburns {
+  animation: kenburns 20s ease-out forwards;
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+/* Gold sparkle / particles effect using utility */
+.sparkle-dot {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: #c5a059;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(0.5px);
+}
+
+/* ─── Line Draw ─────────────────────── */
+@keyframes line-draw {
+  from {
+    transform: scaleX(0);
+  }
+
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.line-draw {
+  transform-origin: left center;
+  animation: line-draw 2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Cinematic blur transition overlay */
+.cine-blur {
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}

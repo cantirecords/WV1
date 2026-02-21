@@ -1,0 +1,91 @@
+"use client";
+
+import React from "react";
+import { motion } from "framer-motion";
+import { Heart, Users } from "lucide-react";
+
+export default function Honors({ onNext }: { onNext: () => void }) {
+    const cards = [
+        {
+            icon: Users,
+            title: "Nuestros Padres",
+            text: "Gracias por ser el mapa que guió nuestros pasos. Su amor y sacrificio son el cimiento de nuestra fe y de este nuevo hogar."
+        },
+        {
+            icon: Heart,
+            title: "Nuestros Hermanos",
+            text: "Por caminar a nuestro lado siempre. Su presencia es el regalo más grande y el apoyo que nos ha permitido llegar hasta aquí."
+        }
+    ];
+
+    return (
+        <section className="relative min-h-screen w-full bg-[#030302] py-32 px-6 flex items-center justify-center overflow-hidden">
+            <div className="max-w-6xl w-full space-y-24">
+
+                {/* Header */}
+                <div className="text-center space-y-8">
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        className="font-sans text-wedding-gold/50 tracking-[0.8em] text-[10px] uppercase font-bold"
+                    >
+                        HONOR Y GRATITUD
+                    </motion.div>
+                    <motion.h2
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 1.2 }}
+                        className="font-serif text-5xl md:text-8xl text-white font-extralight italic"
+                    >
+                        A quienes <br /> <span className="gold-text not-italic">amamos de verdad.</span>
+                    </motion.h2>
+                    <motion.p
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 0.6 }}
+                        transition={{ delay: 0.5 }}
+                        className="font-sans text-white text-sm md:text-base tracking-widest leading-loose max-w-2xl mx-auto font-light"
+                    >
+                        Damos gracias a Dios por cada proceso vivido. Esta unión es especial porque ustedes están en ella.
+                    </motion.p>
+                </div>
+
+                {/* Cards */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+                    {cards.map((card, i) => (
+                        <motion.div
+                            key={i}
+                            initial={{ opacity: 0, scale: 0.95 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 1, delay: i * 0.2 }}
+                            className="glass p-8 md:p-16 rounded-[40px] space-y-6 md:space-y-8 group hover:border-wedding-gold/30 transition-all duration-500"
+                        >
+                            <card.icon size={32} className="text-wedding-gold/40 group-hover:text-wedding-gold group-hover:scale-110 transition-all duration-500" />
+                            <h3 className="font-serif text-3xl text-white font-light gold-text">{card.title}</h3>
+                            <p className="font-serif italic text-white/70 text-lg md:text-xl leading-relaxed font-light">
+                                "{card.text}"
+                            </p>
+                        </motion.div>
+                    ))}
+                </div>
+
+                {/* Closing Message */}
+                <div className="text-center pt-16">
+                    <motion.button
+                        onClick={onNext}
+                        whileHover={{ scale: 1.05 }}
+                        className="text-wedding-gold font-sans text-[10px] tracking-[0.6em] uppercase border-b border-wedding-gold/20 pb-2 hover:border-wedding-gold transition-all"
+                    >
+                        La Ceremonia Civil
+                    </motion.button>
+                </div>
+
+            </div>
+
+            {/* Corner Details */}
+            <div className="absolute top-0 left-0 w-64 h-64 bg-wedding-gold/5 blur-[100px] pointer-events-none" />
+            <div className="absolute bottom-0 right-0 w-64 h-64 bg-wedding-gold/5 blur-[100px] pointer-events-none" />
+        </section>
+    );
+}
