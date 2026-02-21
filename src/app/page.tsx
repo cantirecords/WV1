@@ -13,7 +13,7 @@ import { useSearchParams } from "next/navigation";
 function WeddingExperience() {
     const [step, setStep] = useState(0);
     const searchParams = useSearchParams();
-    const guestName = searchParams.get("guest") || "Familia y Amigos";
+    const guestName = searchParams.get("guest") || "Familia";
 
     const next = () => {
         window.scrollTo({ top: 0, behavior: "instant" });
