@@ -4,14 +4,14 @@ import React from "react";
 import { motion } from "framer-motion";
 
 const PHOTOS = [
-    "/IMG_0948.JPG",
-    "/IMG_0950.JPG",
-    "/IMG_0953.JPG",
-    "/IMG_0957.JPG",
-    "/IMG_0958.JPG",
-    "/IMG_0961.JPG",
-    "/IMG_0965.JPG",
-    "/IMG_0975.JPG",
+    "/WV1/IMG_0948.JPG",
+    "/WV1/IMG_0950.JPG",
+    "/WV1/IMG_0953.JPG",
+    "/WV1/IMG_0957.JPG",
+    "/WV1/IMG_0958.JPG",
+    "/WV1/IMG_0961.JPG",
+    "/WV1/IMG_0965.JPG",
+    "/WV1/IMG_0975.JPG",
 ];
 
 export default function Gallery() {

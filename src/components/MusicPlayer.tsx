@@ -35,7 +35,7 @@ export default function MusicPlayer({ isPlaying: shouldPlay }: { isPlaying: bool
             <audio
                 ref={audioRef}
                 loop
-                src="/cancion.mp3"
+                src="/WV1/cancion.mp3"
             />
 
             <motion.button

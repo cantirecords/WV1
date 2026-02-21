@@ -246,7 +246,7 @@ export default function Invitation() {
                                     playsInline
                                     className="w-full h-full object-cover rounded-[22px] grayscale-[50%] group-hover:grayscale-0 transition-all duration-700"
                                 >
-                                    <source src="/propuesta.mp4" type="video/mp4" />
+                                    <source src="/WV1/propuesta.mp4" type="video/mp4" />
                                 </video>
                                 <div className="absolute inset-0 border border-wedding-gold/20 rounded-[30px] pointer-events-none" />
                             </div>

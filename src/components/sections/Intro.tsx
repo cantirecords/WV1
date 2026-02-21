@@ -52,7 +52,7 @@ export default function Intro({ onNext, guestName }: IntroProps) {
                     }}
                     className="absolute inset-0 w-full h-full object-cover"
                 >
-                    <source src="/propuesta.mp4" type="video/mp4" />
+                    <source src="/WV1/propuesta.mp4" type="video/mp4" />
                 </motion.video>
 
                 {/* The dynamic darkening overlay */}

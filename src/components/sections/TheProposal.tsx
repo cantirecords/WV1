@@ -10,7 +10,7 @@ export default function TheProposal({ onNext }: { onNext: () => void }) {
             {/* Dark Cinematic Photo Background */}
             <div className="absolute inset-0 z-0">
                 <img
-                    src="/IMG_0961.JPG"
+                    src="/WV1/IMG_0961.JPG"
                     alt="The Proposal"
                     className="w-full h-full object-cover opacity-40 animate-kenburns"
                 />
