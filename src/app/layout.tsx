@@ -10,13 +10,13 @@ export const metadata: Metadata = {
     title: "José & Abigail | Edición Especial de Boda",
     description: "Una edición especial para un día inolvidable. ¡Toca aquí para abrir nuestra invitación!",
     openGraph: {
-        title: "✨ LA BODA: José & Abigail",
+        title: "✨ NUESTRA BODA: José & Abigail",
         description: "Invitación Digital Oficial | Edición Especial — Toca para abrir",
         url: "https://cantirecords.github.io/WV1/",
         siteName: "Revista de Boda",
         images: [
             {
-                url: "https://cantirecords.github.io/WV1/magazine_og.jpg?v=15",
+                url: "https://cantirecords.github.io/WV1/invitacion_oficial.jpg?v=final",
                 width: 1200,
                 height: 1600,
                 alt: "Invitación de Boda José & Abigail",
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
         card: "summary_large_image",
         title: "Boda de José & Abigail",
         description: "Nuestra invitación oficial — Toca para abrir.",
-        images: ["https://cantirecords.github.io/WV1/magazine_og.jpg?v=15"],
+        images: ["https://cantirecords.github.io/WV1/invitacion_oficial.jpg?v=final"],
     },
     appleWebApp: {
         capable: true,
