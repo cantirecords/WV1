@@ -16,7 +16,7 @@ export const metadata: Metadata = {
         siteName: "Revista de Boda",
         images: [
             {
-                url: "https://cantirecords.github.io/WV1/magazine.jpg?v=4",
+                url: "https://cantirecords.github.io/WV1/magazine.jpg?v=10",
                 width: 1200,
                 height: 1600,
                 alt: "Invitación de Boda José & Abigail",
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
         card: "summary_large_image",
         title: "Boda de José & Abigail",
         description: "Nuestra invitación oficial — Toca para abrir.",
-        images: ["https://cantirecords.github.io/WV1/magazine.jpg?v=4"],
+        images: ["https://cantirecords.github.io/WV1/magazine.jpg?v=10"],
     },
     appleWebApp: {
         capable: true,
