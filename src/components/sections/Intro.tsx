@@ -19,6 +19,7 @@ export default function Intro({ onNext, guestName }: IntroProps) {
     useEffect(() => {
         if (videoRef.current) {
             videoRef.current.playbackRate = 0.8;
+            videoRef.current.play().catch(() => { });
         }
     }, []);
 

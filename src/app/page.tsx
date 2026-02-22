@@ -21,6 +21,22 @@ function WeddingExperience() {
         const audio = audioRef.current;
         if (!audio) return;
 
+        const isUserIntentPlaying = audio.dataset.userPlaying === 'true';
+        let retryPlayInterval: NodeJS.Timeout | undefined;
+
+        // Force play if iOS paused it maliciously because of the video
+        if (isUserIntentPlaying) {
+            const enforcePlay = () => {
+                if (audio.paused && audio.dataset.userPlaying === 'true') {
+                    audio.play().catch(() => { });
+                } else if (!audio.paused && retryPlayInterval) {
+                    clearInterval(retryPlayInterval);
+                }
+            };
+            enforcePlay();
+            retryPlayInterval = setInterval(enforcePlay, 1000);
+        }
+
         const targetVolume = isDucked ? 0.1 : 1.0;
         const startVolume = audio.volume;
         const duration = 1000;
@@ -40,7 +56,10 @@ function WeddingExperience() {
         };
 
         animationFrame = requestAnimationFrame(animateVolume);
-        return () => cancelAnimationFrame(animationFrame);
+        return () => {
+            cancelAnimationFrame(animationFrame);
+            if (retryPlayInterval) clearInterval(retryPlayInterval);
+        };
     }, [isDucked]);
 
     const next = () => {

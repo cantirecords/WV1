@@ -8,21 +8,44 @@ interface ProposalVideoModalProps {
     isOpen: boolean;
     onClose: () => void;
     videoUrl: string;
+    onEarlyFadeUp?: () => void;
 }
 
-export default function ProposalVideoModal({ isOpen, onClose, videoUrl }: ProposalVideoModalProps) {
+export default function ProposalVideoModal({ isOpen, onClose, videoUrl, onEarlyFadeUp }: ProposalVideoModalProps) {
     const videoRef = useRef<HTMLVideoElement>(null);
     const [isLoading, setIsLoading] = React.useState(true);
+    const [hasFadedUp, setHasFadedUp] = React.useState(false);
 
     useEffect(() => {
         if (isOpen) {
             setIsLoading(true);
+            setHasFadedUp(false);
             if (videoRef.current) {
                 videoRef.current.currentTime = 0;
-                videoRef.current.play().catch(e => console.error("Video play failed", e));
+                // Force play dynamically for iOS compatibility
+                const playPromise = videoRef.current.play();
+                if (playPromise !== undefined) {
+                    playPromise.catch(e => console.error("Video play failed", e));
+                }
+            }
+        } else {
+            // When closing, make sure to pause video to release iOS audio session
+            if (videoRef.current) {
+                videoRef.current.pause();
+                videoRef.current.currentTime = 0;
             }
         }
     }, [isOpen]);
+
+    const handleTimeUpdate = () => {
+        if (!videoRef.current || hasFadedUp || !onEarlyFadeUp) return;
+
+        const remaining = videoRef.current.duration - videoRef.current.currentTime;
+        if (remaining <= 6) { // 6 seconds before end to smoothly fade up
+            setHasFadedUp(true);
+            onEarlyFadeUp();
+        }
+    };
 
     return (
         <AnimatePresence>
@@ -35,7 +58,7 @@ export default function ProposalVideoModal({ isOpen, onClose, videoUrl }: Propos
                 >
                     <div className="relative w-full h-full max-w-lg mx-auto flex items-center justify-center bg-black overflow-hidden lg:rounded-2xl">
                         {isLoading && (
-                            <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 z-20">
+                            <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 z-20 pointer-events-none">
                                 <div className="w-12 h-px bg-wedding-gold animate-pulse" />
                                 <span className="font-sans text-[10px] tracking-[.4em] uppercase text-wedding-gold/60 animate-pulse">Cargando momento...</span>
                             </div>
@@ -49,6 +72,7 @@ export default function ProposalVideoModal({ isOpen, onClose, videoUrl }: Propos
                             controls
                             preload="auto"
                             onCanPlay={() => setIsLoading(false)}
+                            onTimeUpdate={handleTimeUpdate}
                             onEnded={onClose}
                         />
 
