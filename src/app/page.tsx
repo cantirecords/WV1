@@ -7,6 +7,7 @@ import StoryTimeline from "@/components/sections/StoryTimeline";
 import TheProposal from "@/components/sections/TheProposal";
 import Honors from "@/components/sections/Honors";
 import Invitation from "@/components/sections/Invitation";
+import MagazineStyle from "@/components/sections/MagazineStyle";
 import MusicPlayer from "@/components/MusicPlayer";
 import { useSearchParams } from "next/navigation";
 
@@ -65,6 +66,7 @@ function WeddingExperience() {
         <StoryTimeline key="story" onNext={next} />,
         <Honors key="honors" onNext={next} />,
         <TheProposal key="proposal" onNext={next} onDuck={setIsDucked} />,
+        <MagazineStyle key="magazine" onNext={next} />,
         <Invitation key="invitation" />
     ];
 
