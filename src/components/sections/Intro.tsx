@@ -15,6 +15,12 @@ export default function Intro({ onNext, guestName }: IntroProps) {
     const videoRef = useRef<HTMLVideoElement>(null);
     const [isRevealed, setIsRevealed] = React.useState(false);
     const [touchStart, setTouchStart] = React.useState<number | null>(null);
+    const [showPrompt, setShowPrompt] = React.useState(false);
+
+    useEffect(() => {
+        const timer = setTimeout(() => setShowPrompt(true), 6000);
+        return () => clearTimeout(timer);
+    }, []);
 
     useEffect(() => {
         if (videoRef.current) {
@@ -77,9 +83,9 @@ export default function Intro({ onNext, guestName }: IntroProps) {
                 {/* Constant gradient for depth */}
                 <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/60 pointer-events-none" />
 
-                {/* Initial "Swipe Up" Prompt - Visible at start */}
+                {/* Initial "Swipe Up" Prompt - Delayed by 6s as requested */}
                 <AnimatePresence>
-                    {!isRevealed && (
+                    {!isRevealed && showPrompt && (
                         <motion.div
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
