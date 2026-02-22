@@ -7,16 +7,16 @@ const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-serif"
 const cursive = Pinyon_Script({ weight: "400", subsets: ["latin"], variable: "--font-cursive" });
 
 export const metadata: Metadata = {
-    title: "José & Abigail | The Wedding Issue",
+    title: "José & Abigail | Edición Especial de Boda",
     description: "Una edición especial para un día inolvidable. Abriendo nuestra invitación oficial.",
     openGraph: {
-        title: "✨ THE WEDDING: José & Abigail",
-        description: "Official Digital Invitation | The Special Issue",
+        title: "✨ LA BODA: José & Abigail",
+        description: "Invitación Digital Oficial | Edición Especial",
         url: "https://cantirecords.github.io/WV1/",
-        siteName: "Wedding Magazine",
+        siteName: "Revista de Boda",
         images: [
             {
-                url: "https://cantirecords.github.io/WV1/magazine.jpg",
+                url: "https://cantirecords.github.io/WV1/magazine.JPG",
                 width: 1200,
                 height: 630,
                 alt: "José & Abigail Boda",
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
         card: "summary_large_image",
         title: "Boda de José & Abigail",
         description: "Nuestra invitación oficial.",
-        images: ["https://cantirecords.github.io/WV1/IMG_0961.JPG"],
+        images: ["https://cantirecords.github.io/WV1/magazine.JPG"],
     },
     appleWebApp: {
         capable: true,

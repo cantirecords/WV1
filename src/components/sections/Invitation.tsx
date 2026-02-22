@@ -291,28 +291,29 @@ export default function Invitation() {
                     💝
                 </motion.div>
 
-                {/* 2. Abigail's Turtle - Walking to the right (fixed direction) */}
+                {/* 2. Abigail's Turtle - Larger & Always visible walking along the bottom */}
                 <motion.div
-                    animate={{ x: ["-10vw", "110vw"] }}
-                    transition={{ duration: 32, repeat: Infinity, ease: "linear" }}
-                    className="absolute bottom-6 text-3xl scale-x-[-1]"
+                    initial={{ scaleX: -1 }}
+                    animate={{ x: ["-15vw", "115vw"] }}
+                    transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+                    className="absolute bottom-10 text-4xl z-30"
                 >
                     🐢
                 </motion.div>
 
-                {/* 3. Jose's Soccer Ball - Gentler, more natural movement */}
+                {/* 3. Jose's Soccer Ball - Very subtle movement as requested */}
                 <motion.div
                     animate={{
                         x: ["-20vw", "120vw"],
-                        y: [0, -25, 0],
+                        y: [0, -10, 0],
                         rotate: 360
                     }}
                     transition={{
-                        x: { duration: 25, repeat: Infinity, ease: "linear" },
-                        y: { duration: 1.5, repeat: Infinity, ease: "easeInOut" },
-                        rotate: { duration: 5, repeat: Infinity, ease: "linear" }
+                        x: { duration: 35, repeat: Infinity, ease: "linear" },
+                        y: { duration: 3, repeat: Infinity, ease: "easeInOut" },
+                        rotate: { duration: 10, repeat: Infinity, ease: "linear" }
                     }}
-                    className="absolute bottom-8 text-2xl"
+                    className="absolute bottom-12 text-3xl opacity-80 z-30"
                 >
                     ⚽
                 </motion.div>
