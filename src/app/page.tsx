@@ -31,8 +31,8 @@ function WeddingExperience() {
 
         const targetVolume = isDucked ? 0.1 : 1.0;
         const startVolume = audio.volume;
-        // Duck quickly, fade up slowly
-        const duration = isDucked ? 1000 : 5000;
+        // Duck gradually, fade up slowly
+        const duration = isDucked ? 2500 : 5000;
         const startTime = performance.now();
         let animationFrame: number;
 

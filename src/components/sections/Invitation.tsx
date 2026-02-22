@@ -61,24 +61,58 @@ export default function Invitation() {
     ];
 
     const triggerConfetti = () => {
-        const duration = 4000;
+        const duration = 5000;
         const end = Date.now() + duration;
 
+        // Custom personalized shapes (Abigail: turtles/ocean, Jose: music/soccer)
+        const customShapes = [
+            confetti.shapeFromText({ text: '🐢', scalar: 3 }),
+            confetti.shapeFromText({ text: '🌊', scalar: 3 }),
+            confetti.shapeFromText({ text: '⚽️', scalar: 3 }),
+            confetti.shapeFromText({ text: '🎵', scalar: 3 }),
+            confetti.shapeFromText({ text: '❤️', scalar: 2 })
+        ];
+
         const frame = () => {
+            // Elegant gold confetti
             confetti({
-                particleCount: 5,
+                particleCount: 4,
                 angle: 60,
                 spread: 55,
                 origin: { x: 0 },
                 colors: ['#c5a059', '#ffffff', '#8e6d31', '#f3e7ad']
             });
             confetti({
-                particleCount: 5,
+                particleCount: 4,
                 angle: 120,
                 spread: 55,
                 origin: { x: 1 },
                 colors: ['#c5a059', '#ffffff', '#8e6d31', '#f3e7ad']
             });
+
+            // Occasional fun distinct shapes from the bottom
+            if (Math.random() < 0.6) {
+                confetti({
+                    particleCount: 2,
+                    angle: 60,
+                    spread: 80,
+                    origin: { x: 0 },
+                    shapes: customShapes,
+                    ticks: 300,
+                    gravity: 0.8,
+                    scalar: 2
+                });
+                confetti({
+                    particleCount: 2,
+                    angle: 120,
+                    spread: 80,
+                    origin: { x: 1 },
+                    shapes: customShapes,
+                    ticks: 300,
+                    gravity: 0.8,
+                    scalar: 2
+                });
+            }
 
             if (Date.now() < end) {
                 requestAnimationFrame(frame);
