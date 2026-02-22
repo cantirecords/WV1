@@ -9,6 +9,20 @@ const cursive = Pinyon_Script({ weight: "400", subsets: ["latin"], variable: "--
 export const metadata: Metadata = {
     title: "José & Abigail | Nuestra Boda",
     description: "Una experiencia interactiva para nuestra boda íntima.",
+    appleWebApp: {
+        capable: true,
+        statusBarStyle: "black-translucent",
+        title: "Boda J&A"
+    },
+};
+
+export const viewport = {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 1,
+    userScalable: false,
+    viewportFit: 'cover',
+    themeColor: '#000000',
 };
 
 export default function RootLayout({

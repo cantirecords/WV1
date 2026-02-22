@@ -26,7 +26,7 @@ export default function StoryTimeline({ onNext }: { onNext: () => void }) {
     ];
 
     return (
-        <section className="relative min-h-screen w-full bg-[#030302] py-32 px-6 overflow-hidden">
+        <section className="relative min-h-[100dvh] w-full bg-[#030302] py-32 px-6 overflow-hidden">
             <div className="max-w-7xl mx-auto space-y-32">
 
                 {/* Intro to story */}

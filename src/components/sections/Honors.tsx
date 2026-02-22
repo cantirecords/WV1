@@ -19,7 +19,7 @@ export default function Honors({ onNext }: { onNext: () => void }) {
     ];
 
     return (
-        <section className="relative min-h-screen w-full bg-[#030302] py-32 px-6 flex items-center justify-center overflow-hidden">
+        <section className="relative min-h-[100dvh] w-full bg-[#030302] py-32 px-6 flex items-center justify-center overflow-hidden">
             <div className="max-w-6xl w-full space-y-24">
 
                 {/* Header */}

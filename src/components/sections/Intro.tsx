@@ -35,7 +35,7 @@ export default function Intro({ onNext, guestName }: IntroProps) {
     }, []);
 
     return (
-        <section ref={containerRef} className="relative w-full h-[100vh] bg-black overflow-hidden">
+        <section ref={containerRef} className="relative w-full h-[100dvh] bg-black overflow-hidden">
             {/* 1. Sticky Background Layer (Now effectively just absolute since height is 100vh) */}
             <div className="absolute inset-0 h-screen w-full overflow-hidden flex items-center justify-center">
                 <motion.video

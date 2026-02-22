@@ -6,7 +6,7 @@ import SwipeButton from "../SwipeButton";
 
 export default function TheProposal({ onNext }: { onNext: () => void }) {
     return (
-        <section className="relative h-screen w-full bg-black flex items-center justify-center overflow-hidden">
+        <section className="relative h-[100dvh] w-full bg-black flex items-center justify-center overflow-hidden">
             {/* Dark Cinematic Photo Background */}
             <div className="absolute inset-0 z-0">
                 <img
