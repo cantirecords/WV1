@@ -97,10 +97,51 @@ body {
   }
 }
 
-/* ─── Glassmorphism ─────────────────── */
+/* Option 2: Gold Dust Particles Atmosphere */
+.gold-dust-container {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 5;
+  overflow: hidden;
+}
+
+.gold-dust {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: #c5a059;
+  border-radius: 50%;
+  opacity: 0.3;
+  filter: blur(1px);
+  animation: float-particle 20s infinite linear;
+}
+
+@keyframes float-particle {
+  0% {
+    transform: translateY(100vh) translateX(0) scale(1);
+    opacity: 0;
+  }
+
+  20% {
+    opacity: 0.4;
+  }
+
+  80% {
+    opacity: 0.4;
+  }
+
+  100% {
+    transform: translateY(-10vh) translateX(100px) scale(0.5);
+    opacity: 0;
+  }
+}
+
+/* Glassmorphism refined */
 .glass {
-  background: rgba(255, 255, 255, 0.02);
-  backdrop-filter: blur(20px);
+  background: rgba(10, 10, 10, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(197, 160, 89, 0.1);
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
 }
