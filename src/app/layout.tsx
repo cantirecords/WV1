@@ -7,8 +7,30 @@ const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-serif"
 const cursive = Pinyon_Script({ weight: "400", subsets: ["latin"], variable: "--font-cursive" });
 
 export const metadata: Metadata = {
-    title: "José & Abigail | Nuestra Boda",
-    description: "Una experiencia interactiva para nuestra boda íntima.",
+    title: "José & Abigail | Nuestra Boda Civil",
+    description: "¡Hola! Tenemos un mensaje muy especial para ti. Toca para abrir nuestra invitación oficial.",
+    openGraph: {
+        title: "💍 Estás invitado: Boda de José & Abigail",
+        description: "Preparamos una experiencia especial para compartir nuestro momento contigo. ¡Entra aquí!",
+        url: "https://cantirecords.github.io/WV1/",
+        siteName: "Boda José & Abigail",
+        images: [
+            {
+                url: "https://cantirecords.github.io/WV1/IMG_0961.JPG",
+                width: 1200,
+                height: 630,
+                alt: "José & Abigail Boda",
+            },
+        ],
+        locale: "es_ES",
+        type: "website",
+    },
+    twitter: {
+        card: "summary_large_image",
+        title: "Boda de José & Abigail",
+        description: "Nuestra invitación oficial.",
+        images: ["https://cantirecords.github.io/WV1/IMG_0961.JPG"],
+    },
     appleWebApp: {
         capable: true,
         statusBarStyle: "black-translucent",
