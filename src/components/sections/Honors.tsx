@@ -50,12 +50,11 @@ export default function Honors({ onNext }: { onNext: () => void }) {
                     </motion.p>
                 </div>
 
-                {/* Parents Photo */}
                 <motion.div
-                    initial={{ opacity: 0, y: 40 }}
+                    initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 1.5 }}
+                    transition={{ duration: 1.0 }}
                     className="relative w-full aspect-video md:aspect-[21/9] rounded-[40px] overflow-hidden shadow-2xl border border-wedding-gold/10"
                 >
                     <img

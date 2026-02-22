@@ -18,25 +18,29 @@ function WeddingExperience() {
     const guestName = searchParams.get("guest") || "Familia";
 
     useEffect(() => {
-        if (audioRef.current) {
-            const targetVolume = isDucked ? 0.1 : 1.0;
-            const currentVolume = audioRef.current.volume;
+        const audio = audioRef.current;
+        if (!audio) return;
 
-            // Simple fade logic
-            const step = isDucked ? -0.05 : 0.05;
-            const interval = setInterval(() => {
-                if (audioRef.current) {
-                    const nextVolume = audioRef.current.volume + step;
-                    if ((step > 0 && nextVolume >= targetVolume) || (step < 0 && nextVolume <= targetVolume)) {
-                        audioRef.current.volume = targetVolume;
-                        clearInterval(interval);
-                    } else {
-                        audioRef.current.volume = Math.max(0, Math.min(1, nextVolume));
-                    }
-                }
-            }, 50);
-            return () => clearInterval(interval);
-        }
+        const targetVolume = isDucked ? 0.1 : 1.0;
+        const startVolume = audio.volume;
+        const duration = 1000;
+        const startTime = performance.now();
+        let animationFrame: number;
+
+        const animateVolume = (now: number) => {
+            const elapsed = now - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            const ease = 1 - (1 - progress) * (1 - progress);
+
+            audio.volume = startVolume + (targetVolume - startVolume) * ease;
+
+            if (progress < 1) {
+                animationFrame = requestAnimationFrame(animateVolume);
+            }
+        };
+
+        animationFrame = requestAnimationFrame(animateVolume);
+        return () => cancelAnimationFrame(animationFrame);
     }, [isDucked]);
 
     const next = () => {
