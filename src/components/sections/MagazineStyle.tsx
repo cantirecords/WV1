@@ -37,27 +37,40 @@ export default function MagazineStyle({ onNext }: { onNext?: () => void }) {
                     />
 
                     {/* Shadow Gradients: Focused only on top/bottom edges to keep faces clear */}
-                    <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent via-[30%] via-transparent to-black/70 z-10" />
+                    <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent via-[40%] via-transparent to-black/80 z-10" />
 
-                    {/* Sky Overlay: "Una Vida Juntos" - Top center, very thin and elegant */}
-                    <div className="absolute top-8 left-0 w-full z-20 text-center px-4">
+                    {/* Centered Sky Overlays: Una Vida Juntos -> Reserva la fecha -> 20 de Marzo */}
+                    <div className="absolute top-10 left-0 w-full z-20 text-center px-4 flex flex-col gap-3">
                         <motion.span
-                            initial={{ opacity: 0 }}
-                            whileInView={{ opacity: 0.8 }}
-                            transition={{ delay: 1 }}
-                            className="text-[9px] md:text-[12px] tracking-[1em] uppercase text-white font-light drop-shadow-lg"
+                            initial={{ opacity: 0, y: -10 }}
+                            whileInView={{ opacity: 0.8, y: 0 }}
+                            transition={{ delay: 0.5 }}
+                            className="text-[10px] md:text-[14px] tracking-[1.2em] uppercase text-white font-light drop-shadow-lg"
                         >
                             Una Vida Juntos
                         </motion.span>
+
+                        <div className="space-y-1">
+                            <motion.span
+                                initial={{ opacity: 0 }}
+                                whileInView={{ opacity: 1 }}
+                                transition={{ delay: 0.8 }}
+                                className="text-[8px] tracking-[0.4em] uppercase font-bold text-wedding-gold/90 block drop-shadow-md"
+                            >
+                                Reserva la Fecha
+                            </motion.span>
+                            <motion.p
+                                initial={{ opacity: 0, scale: 0.9 }}
+                                whileInView={{ opacity: 1, scale: 1 }}
+                                transition={{ delay: 1 }}
+                                className="font-serif text-3xl md:text-5xl italic text-white drop-shadow-xl"
+                            >
+                                20 de Marzo
+                            </motion.p>
+                        </div>
                     </div>
 
-                    {/* Date: Top Right, away from faces */}
-                    <div className="absolute top-6 right-6 z-20 text-right">
-                        <span className="text-[8px] tracking-[0.3em] uppercase font-bold text-wedding-gold/80 block">RESERVA LA FECHA</span>
-                        <p className="font-serif text-xl italic text-white drop-shadow-md">20 de Marzo</p>
-                    </div>
-
-                    {/* Names: Moved to the very bottom left corner, avoiding faces completely */}
+                    {/* Names: Corner, avoiding faces */}
                     <div className="absolute bottom-6 left-6 z-20">
                         <div className="border-l-2 border-wedding-gold/50 pl-4">
                             <h2 className="font-serif text-3xl md:text-6xl italic leading-none text-white drop-shadow-lg">
@@ -69,7 +82,7 @@ export default function MagazineStyle({ onNext }: { onNext?: () => void }) {
                         </div>
                     </div>
 
-                    {/* JUMPING ACTION BUTTON: Moved to bottom right corner, far from faces */}
+                    {/* JUMPING ACTION BUTTON */}
                     <motion.div
                         animate={{
                             scale: [1, 1.1, 1],
@@ -91,7 +104,7 @@ export default function MagazineStyle({ onNext }: { onNext?: () => void }) {
                     </motion.div>
                 </div>
 
-                {/* 4. Footer Verse: Clean and minimal */}
+                {/* 4. Footer Verse */}
                 <div className="px-6 py-6 text-center z-40">
                     <p className="text-[9px] md:text-[11px] tracking-[0.3em] uppercase font-bold text-wedding-gold italic font-serif opacity-60">
                         "Lo que Dios une, no lo separa el hombre"
