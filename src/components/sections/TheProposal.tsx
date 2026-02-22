@@ -28,23 +28,12 @@ export default function TheProposal({ onNext, onDuck }: { onNext: () => void, on
                 onDuck={onDuck}
             />
 
-            {/* Dark Cinematic Photo Background - High performance Framer Motion instead of CSS animation */}
+            {/* Dark Cinematic Photo Background - Simple and High Performance */}
             <div className="absolute inset-0 z-0">
-                <motion.img
+                <img
                     src="/WV1/IMG_0961.JPG"
                     alt="The Proposal"
-                    initial={{ scale: 1.1, opacity: 0.4 }}
-                    animate={{
-                        scale: hasWatchedVideo ? 1 : 1.05,
-                        opacity: hasWatchedVideo ? 0.3 : 0.4
-                    }}
-                    transition={{
-                        duration: hasWatchedVideo ? 2 : 20,
-                        ease: "linear",
-                        repeat: hasWatchedVideo ? 0 : Infinity,
-                        repeatType: "reverse"
-                    }}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover opacity-30"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-black" />
             </div>

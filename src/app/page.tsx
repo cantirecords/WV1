@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, Suspense, useEffect, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import Intro from "@/components/sections/Intro";
 import StoryTimeline from "@/components/sections/StoryTimeline";
 import TheProposal from "@/components/sections/TheProposal";
@@ -14,8 +14,6 @@ import { useSearchParams } from "next/navigation";
 function WeddingExperience() {
     const [step, setStep] = useState(0);
     const [isDucked, setIsDucked] = useState(false);
-    const [isIdle, setIsIdle] = useState(false);
-    const idleTimerRef = useRef<NodeJS.Timeout | null>(null);
     const audioRef = useRef<HTMLAudioElement | null>(null);
     const searchParams = useSearchParams();
     const guestName = searchParams.get("guest") || "Familia";
@@ -58,28 +56,6 @@ function WeddingExperience() {
         };
     }, [isDucked]);
 
-    // Option E: Idle Detection
-    useEffect(() => {
-        const resetIdleTimer = () => {
-            setIsIdle(false);
-            if (idleTimerRef.current) clearTimeout(idleTimerRef.current);
-            // Show hint after 7 seconds of inactivity
-            idleTimerRef.current = setTimeout(() => setIsIdle(true), 7000);
-        };
-
-        window.addEventListener('mousemove', resetIdleTimer);
-        window.addEventListener('touchstart', resetIdleTimer);
-        window.addEventListener('scroll', resetIdleTimer);
-        resetIdleTimer();
-
-        return () => {
-            window.removeEventListener('mousemove', resetIdleTimer);
-            window.removeEventListener('touchstart', resetIdleTimer);
-            window.removeEventListener('scroll', resetIdleTimer);
-            if (idleTimerRef.current) clearTimeout(idleTimerRef.current);
-        };
-    }, []);
-
     const next = () => {
         setStep(s => s + 1);
         window.scrollTo({ top: 0, behavior: "instant" });
@@ -111,68 +87,23 @@ function WeddingExperience() {
                 </motion.div>
             </div>
 
-            {/* Option C: Simple vertical progress indicator with Heat Check-in */}
-            <div className="fixed right-2 md:right-4 top-1/2 -translate-y-1/2 z-[100] flex flex-col gap-4 px-1.5 py-6 rounded-full glass border-wedding-gold/10">
+            {/* Simple vertical progress indicator - Moved slightly right to avoid overlap */}
+            <div className="fixed right-2 md:right-4 top-1/2 -translate-y-1/2 z-[100] flex flex-col gap-3 px-1.5 py-4 rounded-full glass border-wedding-gold/10">
                 {steps.map((_, i) => (
                     <motion.div
                         key={i}
                         animate={{
-                            scale: step === i ? 1.2 : 1,
+                            height: step === i ? 24 : 8,
+                            backgroundColor: step === i ? "#c5a059" : "rgba(197, 160, 89, 0.2)"
                         }}
-                        className="relative cursor-pointer flex items-center justify-center w-4 h-4"
+                        className="w-1.5 rounded-full cursor-pointer transition-all duration-500"
                         onClick={() => {
                             setStep(i);
                             window.scrollTo({ top: 0, behavior: "instant" });
                         }}
-                    >
-                        <AnimatePresence mode="wait">
-                            {step === i ? (
-                                <motion.div
-                                    key="heart"
-                                    initial={{ scale: 0, opacity: 0 }}
-                                    animate={{ scale: 1, opacity: 1 }}
-                                    exit={{ scale: 0, opacity: 0 }}
-                                    className="text-wedding-gold text-xs"
-                                >
-                                    <svg viewBox="0 0 24 24" fill="currentColor" className="w-3 h-3 drop-shadow-[0_0_5px_rgba(197,160,89,0.8)]">
-                                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-                                    </svg>
-                                </motion.div>
-                            ) : (
-                                <motion.div
-                                    key="dot"
-                                    initial={{ opacity: 0.2 }}
-                                    animate={{
-                                        opacity: i < step ? 0.6 : 0.2,
-                                        backgroundColor: i < step ? "#c5a059" : "rgba(197, 160, 89, 0.2)"
-                                    }}
-                                    className="w-1.5 h-1.5 rounded-full"
-                                />
-                            )}
-                        </AnimatePresence>
-                    </motion.div>
+                    />
                 ))}
             </div>
-
-            {/* Option E: Smart Navigation Hint */}
-            <AnimatePresence>
-                {isIdle && step < steps.length - 1 && (
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: 10 }}
-                        className="fixed bottom-10 left-1/2 -translate-x-1/2 z-[200] flex flex-col items-center gap-2 pointer-events-none"
-                    >
-                        <motion.div
-                            animate={{ y: [0, 8, 0] }}
-                            transition={{ repeat: Infinity, duration: 2 }}
-                            className="bg-wedding-gold/20 backdrop-blur-md border border-wedding-gold/30 px-4 py-2 rounded-full"
-                        >
-                            <span className="font-sans text-[8px] tracking-[0.4em] uppercase text-white/80">Continúa explorando ↓</span>
-                        </motion.div>
-                    </motion.div>
-                )}
-            </AnimatePresence>
 
             {/* Cinematic Overlay */}
             <div className="fixed inset-0 pointer-events-none z-[150] border-[40px] md:border-[80px] border-black opacity-10" />

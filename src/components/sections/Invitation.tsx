@@ -5,8 +5,12 @@ import { motion } from "framer-motion";
 import { MapPin, Clock, UtensilsCrossed } from "lucide-react";
 import Gallery from "./Gallery";
 import confetti from "canvas-confetti";
+import { useSearchParams } from "next/navigation";
 
 export default function Invitation() {
+    const searchParams = useSearchParams();
+    const guestName = searchParams.get("guest") || "";
+
     const weddingDate = new Date("2026-03-20T11:00:00").getTime();
     const [timeLeft, setTimeLeft] = useState({
         days: 0, hours: 0, minutes: 0, seconds: 0
@@ -262,6 +266,18 @@ export default function Invitation() {
                         >
                             José & Abigail
                         </motion.h4>
+
+                        {guestName && (
+                            <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                className="space-y-2 mb-12"
+                            >
+                                <span className="font-sans text-wedding-gold text-[10px] tracking-[0.4em] uppercase font-bold">¡No faltes!</span>
+                                <p className="font-serif text-3xl md:text-5xl text-white italic">{guestName}</p>
+                            </motion.div>
+                        )}
+
                         <div className="font-sans text-white/40 tracking-[0.6em] text-[9px] md:text-[10px] uppercase flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8 pt-4">
                             <span>Arkansas</span>
                             <span className="hidden md:block w-1.5 h-1.5 rounded-full bg-wedding-gold/30" />
