@@ -21,21 +21,13 @@ function WeddingExperience() {
         const audio = audioRef.current;
         if (!audio) return;
 
-        const isUserIntentPlaying = audio.dataset.userPlaying === 'true';
-        let retryPlayInterval: NodeJS.Timeout | undefined;
-
-        // Force play if iOS paused it maliciously because of the video
-        if (isUserIntentPlaying) {
-            const enforcePlay = () => {
-                if (audio.paused && audio.dataset.userPlaying === 'true') {
-                    audio.play().catch(() => { });
-                } else if (!audio.paused && retryPlayInterval) {
-                    clearInterval(retryPlayInterval);
-                }
-            };
-            enforcePlay();
-            retryPlayInterval = setInterval(enforcePlay, 1000);
-        }
+        // Persistent play enforcer: iOS pauses background audio when the video starts. 
+        // This instantly resumes the background audio so it flows naturally with the video.
+        const retryPlayInterval = setInterval(() => {
+            if (audio.paused && audio.dataset.userPlaying === 'true') {
+                audio.play().catch(() => { });
+            }
+        }, 300);
 
         const targetVolume = isDucked ? 0.1 : 1.0;
         const startVolume = audio.volume;
