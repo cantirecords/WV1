@@ -8,42 +8,52 @@ interface ProposalVideoModalProps {
     isOpen: boolean;
     onClose: () => void;
     videoUrl: string;
-    onEarlyFadeUp?: () => void;
+    onDuck?: (duck: boolean) => void;
 }
 
-export default function ProposalVideoModal({ isOpen, onClose, videoUrl, onEarlyFadeUp }: ProposalVideoModalProps) {
+export default function ProposalVideoModal({ isOpen, onClose, videoUrl, onDuck }: ProposalVideoModalProps) {
     const videoRef = useRef<HTMLVideoElement>(null);
     const [isLoading, setIsLoading] = React.useState(true);
+    const [hasDucked, setHasDucked] = React.useState(false);
     const [hasFadedUp, setHasFadedUp] = React.useState(false);
 
     useEffect(() => {
         if (isOpen) {
             setIsLoading(true);
+            setHasDucked(false);
             setHasFadedUp(false);
             if (videoRef.current) {
                 videoRef.current.currentTime = 0;
-                // Force play dynamically for iOS compatibility
                 const playPromise = videoRef.current.play();
                 if (playPromise !== undefined) {
                     playPromise.catch(e => console.error("Video play failed", e));
                 }
             }
         } else {
-            // When closing, make sure to pause video to release iOS audio session
             if (videoRef.current) {
                 videoRef.current.pause();
                 videoRef.current.currentTime = 0;
             }
+            if (onDuck) onDuck(false); // Ensure music restores if closed manually
         }
     }, [isOpen]);
 
     const handleTimeUpdate = () => {
-        if (!videoRef.current || hasFadedUp || !onEarlyFadeUp) return;
+        if (!videoRef.current || !onDuck) return;
 
-        const remaining = videoRef.current.duration - videoRef.current.currentTime;
-        if (remaining <= 6) { // 6 seconds before end to smoothly fade up
-            setHasFadedUp(true);
-            onEarlyFadeUp();
+        const current = videoRef.current.currentTime;
+
+        // Exact timeline user requested for ducking: only between 6s and 10s
+        if (current >= 6 && current <= 10) {
+            if (!hasDucked) {
+                setHasDucked(true);
+                onDuck(true); // Fades music to 10%
+            }
+        } else if (current > 10) {
+            if (!hasFadedUp) {
+                setHasFadedUp(true);
+                onDuck(false); // Fades music back to 100% slowly over 5s
+            }
         }
     };
 

@@ -11,12 +11,10 @@ export default function TheProposal({ onNext, onDuck }: { onNext: () => void, on
 
     const handleOpenVideo = () => {
         setIsVideoOpen(true);
-        onDuck(true);
     };
 
     const handleCloseVideo = () => {
         setIsVideoOpen(false);
-        onDuck(false);
     };
 
     return (
@@ -25,7 +23,7 @@ export default function TheProposal({ onNext, onDuck }: { onNext: () => void, on
                 isOpen={isVideoOpen}
                 onClose={handleCloseVideo}
                 videoUrl="/WV1/ella-dijo-si.mp4"
-                onEarlyFadeUp={() => onDuck(false)}
+                onDuck={onDuck}
             />
 
             {/* Dark Cinematic Photo Background */}
