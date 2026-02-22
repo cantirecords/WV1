@@ -87,8 +87,8 @@ function WeddingExperience() {
                 </motion.div>
             </div>
 
-            {/* Simple vertical progress indicator on the right */}
-            <div className="fixed right-4 top-1/2 -translate-y-1/2 z-[100] flex flex-col gap-3 px-2 py-4 rounded-full glass border-wedding-gold/10">
+            {/* Simple vertical progress indicator - Moved slightly right to avoid overlap */}
+            <div className="fixed right-2 md:right-4 top-1/2 -translate-y-1/2 z-[100] flex flex-col gap-3 px-1.5 py-4 rounded-full glass border-wedding-gold/10">
                 {steps.map((_, i) => (
                     <motion.div
                         key={i}
@@ -96,7 +96,7 @@ function WeddingExperience() {
                             height: step === i ? 24 : 8,
                             backgroundColor: step === i ? "#c5a059" : "rgba(197, 160, 89, 0.2)"
                         }}
-                        className="w-2 rounded-full cursor-pointer transition-all duration-500"
+                        className="w-1.5 rounded-full cursor-pointer transition-all duration-500"
                         onClick={() => {
                             setStep(i);
                             window.scrollTo({ top: 0, behavior: "instant" });
