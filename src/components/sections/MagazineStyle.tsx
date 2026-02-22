@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 
-export default function MagazineStyle({ onNext }: { onNext?: () => void }) {
+export default function MagazineStyle({ onNext, guestName }: { onNext?: () => void, guestName?: string }) {
     return (
         <section className="relative w-full min-h-screen bg-black flex flex-col items-center justify-center p-0 md:p-10 overflow-hidden font-sans">
             {/* Full Height Magazine Container */}
@@ -14,7 +14,12 @@ export default function MagazineStyle({ onNext }: { onNext?: () => void }) {
             >
                 {/* 1. Header: Minimalist and out of the way */}
                 <div className="px-6 flex justify-between items-center mb-4 z-40">
-                    <span className="text-[8px] md:text-[10px] tracking-[0.5em] uppercase font-bold text-wedding-gold/40">Edición Especial No. 01</span>
+                    <div className="flex flex-col">
+                        <span className="text-[8px] md:text-[10px] tracking-[0.5em] uppercase font-bold text-wedding-gold/40">Edición Especial No. 01</span>
+                        {guestName && guestName !== "Familia" && (
+                            <span className="text-[7px] md:text-[8px] tracking-[0.3em] uppercase text-wedding-gold font-bold">Para: {guestName}</span>
+                        )}
+                    </div>
                     <span className="text-[8px] md:text-[10px] tracking-[0.5em] uppercase font-bold text-wedding-gold/80 italic font-serif pr-14 md:pr-0">Arkansas, USA</span>
                 </div>
 

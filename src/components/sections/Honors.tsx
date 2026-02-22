@@ -2,9 +2,22 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Heart } from "lucide-react";
+import { Heart, Users } from "lucide-react";
 
 export default function Honors({ onNext }: { onNext: () => void }) {
+    const cards = [
+        {
+            icon: Users,
+            title: "Nuestros Padres",
+            text: "Gracias por ser el mapa que guió nuestros pasos. Su amor y sacrificio son el cimiento de nuestra fe y de este nuevo hogar."
+        },
+        {
+            icon: Heart,
+            title: "Nuestros Hermanos",
+            text: "Por caminar a nuestro lado siempre. Su presencia es el regalo más grande y el apoyo que nos ha permitido llegar hasta aquí."
+        }
+    ];
+
     return (
         <section className="relative min-h-[100dvh] w-full bg-[#030302] py-32 px-6 flex items-center justify-center overflow-hidden">
             <div className="max-w-6xl w-full space-y-24">
@@ -37,6 +50,7 @@ export default function Honors({ onNext }: { onNext: () => void }) {
                     </motion.p>
                 </div>
 
+                {/* Hero Image */}
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -52,45 +66,24 @@ export default function Honors({ onNext }: { onNext: () => void }) {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" />
                 </motion.div>
 
-                {/* Parents Column */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20">
-                    <motion.div
-                        initial={{ opacity: 0, x: -30 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        className="space-y-12"
-                    >
-                        <div className="space-y-6 text-center md:text-left">
-                            <h3 className="font-sans text-[10px] tracking-[0.5em] uppercase text-wedding-gold font-bold">Padres del Novio</h3>
-                            <div className="space-y-2 border-l-2 border-wedding-gold/20 pl-6">
-                                <p className="font-serif text-2xl text-white font-light">José Ramón Cantillano</p>
-                                <p className="font-serif text-2xl text-white font-light">Mayra Araceli Pineda</p>
-                            </div>
-                        </div>
-
-                        <div className="space-y-6 text-center md:text-left">
-                            <h3 className="font-sans text-[10px] tracking-[0.5em] uppercase text-wedding-gold font-bold">Padres de la Novia</h3>
-                            <div className="space-y-2 border-l-2 border-wedding-gold/20 pl-6">
-                                <p className="font-serif text-2xl text-white font-light">German Antonio Mejía</p>
-                                <p className="font-serif text-2xl text-white font-light">Dilcia Abigail García</p>
-                            </div>
-                        </div>
-                    </motion.div>
-
-                    {/* Right Column: Message/Sibs */}
-                    <motion.div
-                        initial={{ opacity: 0, x: 30 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        className="space-y-12"
-                    >
-                        <div className="space-y-6">
-                            <h3 className="font-sans text-[10px] tracking-[0.5em] uppercase text-wedding-gold font-bold text-center md:text-left">En Compañía de sus hermanos</h3>
-                            <div className="space-y-4 border-l-2 border-wedding-gold/20 pl-6">
-                                <p className="font-serif text-2xl text-white/80 font-light italic leading-relaxed">
-                                    "Por caminar a nuestro lado siempre. Su presencia es el regalo más grande y el apoyo que nos ha permitido llegar hasta aquí."
-                                </p>
-                            </div>
-                        </div>
-                    </motion.div>
+                {/* Cards Grid - NO NAMES, JUST THE MESSAGE CARDS */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+                    {cards.map((card, i) => (
+                        <motion.div
+                            key={i}
+                            initial={{ opacity: 0, scale: 0.95 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 1, delay: i * 0.2 }}
+                            className="glass p-8 md:p-16 rounded-[40px] space-y-6 md:space-y-8 group hover:border-wedding-gold/30 transition-all duration-500"
+                        >
+                            <card.icon size={32} className="text-wedding-gold/40 group-hover:text-wedding-gold group-hover:scale-110 transition-all duration-500" />
+                            <h3 className="font-serif text-3xl text-white font-light gold-text">{card.title}</h3>
+                            <p className="font-serif italic text-white/70 text-lg md:text-xl leading-relaxed font-light">
+                                "{card.text}"
+                            </p>
+                        </motion.div>
+                    ))}
                 </div>
 
                 {/* Closing Message */}

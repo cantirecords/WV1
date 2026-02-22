@@ -66,7 +66,7 @@ function WeddingExperience() {
         <StoryTimeline key="story" onNext={next} />,
         <Honors key="honors" onNext={next} />,
         <TheProposal key="proposal" onNext={next} onDuck={setIsDucked} />,
-        <MagazineStyle key="magazine" onNext={next} />,
+        <MagazineStyle key="magazine" onNext={next} guestName={guestName} />,
         <Invitation key="invitation" />
     ];
 
