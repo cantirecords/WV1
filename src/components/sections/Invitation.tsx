@@ -61,58 +61,24 @@ export default function Invitation() {
     ];
 
     const triggerConfetti = () => {
-        const duration = 5000;
+        const duration = 4000;
         const end = Date.now() + duration;
 
-        // Custom personalized shapes (Abigail: turtles/ocean, Jose: music/soccer)
-        const customShapes = [
-            confetti.shapeFromText({ text: '🐢', scalar: 3 }),
-            confetti.shapeFromText({ text: '🌊', scalar: 3 }),
-            confetti.shapeFromText({ text: '⚽️', scalar: 3 }),
-            confetti.shapeFromText({ text: '🎵', scalar: 3 }),
-            confetti.shapeFromText({ text: '❤️', scalar: 2 })
-        ];
-
         const frame = () => {
-            // Elegant gold confetti
             confetti({
-                particleCount: 4,
+                particleCount: 5,
                 angle: 60,
                 spread: 55,
                 origin: { x: 0 },
                 colors: ['#c5a059', '#ffffff', '#8e6d31', '#f3e7ad']
             });
             confetti({
-                particleCount: 4,
+                particleCount: 5,
                 angle: 120,
                 spread: 55,
                 origin: { x: 1 },
                 colors: ['#c5a059', '#ffffff', '#8e6d31', '#f3e7ad']
             });
-
-            // Occasional fun distinct shapes from the bottom
-            if (Math.random() < 0.6) {
-                confetti({
-                    particleCount: 2,
-                    angle: 60,
-                    spread: 80,
-                    origin: { x: 0 },
-                    shapes: customShapes,
-                    ticks: 300,
-                    gravity: 0.8,
-                    scalar: 2
-                });
-                confetti({
-                    particleCount: 2,
-                    angle: 120,
-                    spread: 80,
-                    origin: { x: 1 },
-                    shapes: customShapes,
-                    ticks: 300,
-                    gravity: 0.8,
-                    scalar: 2
-                });
-            }
 
             if (Date.now() < end) {
                 requestAnimationFrame(frame);
@@ -164,7 +130,6 @@ export default function Invitation() {
                             className="text-center"
                         >
                             <div className="glass w-20 h-24 md:w-32 md:h-40 flex flex-col items-center justify-center rounded-2xl mb-4 border-wedding-gold/20 shadow-2xl relative overflow-hidden group">
-                                {/* Sweep animation on hover */}
                                 <div className="absolute inset-0 bg-wedding-gold/10 -translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
                                 <span className="font-serif text-3xl md:text-6xl text-white font-light relative z-10">
                                     {String(item.value).padStart(2, '0')}
@@ -191,12 +156,9 @@ export default function Invitation() {
                         </div>
 
                         <div className="grid grid-cols-7 gap-2 text-center">
-                            {/* Days of the week header */}
                             {dayLabels.map((day, idx) => (
                                 <div key={idx} className="font-sans text-wedding-gold/50 text-xs font-bold md:mb-4">{day}</div>
                             ))}
-
-                            {/* Days content */}
                             {calendarDays.map(day => {
                                 const isTargetDate = day === 20;
                                 return (
@@ -255,7 +217,6 @@ export default function Invitation() {
                     <h3 className="font-serif text-4xl md:text-7xl text-white font-extralight italic">Instantes previos.</h3>
                 </div>
 
-                {/* The Gallery component uses real photos */}
                 <Gallery />
 
                 {/* Closing signature with Confetti */}
@@ -309,6 +270,51 @@ export default function Invitation() {
                             <span>Boda Civil</span>
                         </div>
                     </div>
+                </motion.div>
+            </div>
+
+            {/* Mascots Container - Fun but Subtle */}
+            <div className="absolute bottom-10 inset-x-0 h-20 pointer-events-none overflow-hidden z-20">
+                {/* Abigail's Turtle - Walking along the bottom */}
+                <motion.div
+                    animate={{ x: ["-10vw", "110vw"] }}
+                    transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+                    className="absolute bottom-2 text-2xl"
+                >
+                    🐢
+                </motion.div>
+
+                {/* Jose's Soccer Ball - Bouncing slightly across */}
+                <motion.div
+                    animate={{
+                        x: ["-20vw", "120vw"],
+                        y: [0, -20, 0],
+                        rotate: 360
+                    }}
+                    transition={{
+                        x: { duration: 18, repeat: Infinity, ease: "linear" },
+                        y: { duration: 0.8, repeat: Infinity, ease: "easeOut" },
+                        rotate: { duration: 1.5, repeat: Infinity, ease: "linear" }
+                    }}
+                    className="absolute bottom-4 text-xl"
+                >
+                    ⚽
+                </motion.div>
+
+                {/* Subtle Waves - Fixed floating */}
+                <motion.div
+                    animate={{ y: [0, 5, 0], opacity: [0.2, 0.4, 0.2] }}
+                    transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                    className="absolute bottom-2 left-1/4 text-2xl opacity-30"
+                >
+                    🌊
+                </motion.div>
+                <motion.div
+                    animate={{ y: [0, -5, 0], opacity: [0.2, 0.4, 0.2] }}
+                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                    className="absolute bottom-6 right-1/4 text-2xl opacity-30"
+                >
+                    🌊
                 </motion.div>
             </div>
 
