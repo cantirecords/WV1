@@ -36,7 +36,7 @@ export default function MagazineStyle({ onNext }: { onNext?: () => void }) {
                 {/* Main Photo Container */}
                 <div className="relative flex-grow overflow-hidden group border border-wedding-gold/20">
                     <img
-                        src="/WV1/magazine.JPG"
+                        src="/WV1/magazine.jpg?v=4"
                         alt="José & Abigail"
                         className="w-full h-full object-cover scale-105 group-hover:scale-100 transition-transform duration-[2s]"
                     />
