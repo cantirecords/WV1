@@ -24,6 +24,7 @@ export default function ProposalVideoModal({ isOpen, onClose, videoUrl, onDuck }
             setHasDucked(false);
             setHasFadedUp(false);
             setShowEndingHeart(false);
+            if (onDuck) onDuck(true); // Duck immediately when modal opens
             if (videoRef.current) {
                 videoRef.current.currentTime = 0;
                 const playPromise = videoRef.current.play();
