@@ -5,27 +5,22 @@ import { motion } from "framer-motion";
 export default function MagazineStyle({ onNext }: { onNext?: () => void }) {
     return (
         <section className="relative w-full min-h-screen bg-black flex flex-col items-center justify-center p-0 md:p-10 overflow-hidden font-sans">
-            {/* Full Height Magazine - 1080x1920 style aspect for mobile focus */}
+            {/* Full Height Magazine Container */}
             <motion.div
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 transition={{ duration: 1.5 }}
-                className="relative w-full h-full min-h-screen bg-[#0a0a0a] flex flex-col pt-12 pb-6 px-4 md:p-8"
+                className="relative w-full h-full min-h-screen bg-[#060606] flex flex-col pt-14 pb-12 overflow-hidden"
             >
-                {/* 1. Header Fix: Move Arkansas away from the music icon z-index and spacing */}
-                <div className="relative z-40 flex justify-between items-start border-b border-wedding-gold/30 pb-4 mb-4">
-                    <div className="flex flex-col">
-                        <span className="text-[9px] tracking-[0.3em] uppercase font-bold text-wedding-gold/60">Edición Especial</span>
-                    </div>
-                    {/* Positioned away from the top-right music button */}
-                    <div className="text-right pr-12 md:pr-0">
-                        <span className="text-[10px] tracking-[0.4em] uppercase font-bold text-wedding-gold/80 italic font-serif">Arkansas, USA</span>
-                    </div>
+                {/* 1. Header: Minimalist and out of the way */}
+                <div className="px-6 flex justify-between items-center mb-4 z-40">
+                    <span className="text-[8px] md:text-[10px] tracking-[0.5em] uppercase font-bold text-wedding-gold/40">Edición Especial No. 01</span>
+                    <span className="text-[8px] md:text-[10px] tracking-[0.5em] uppercase font-bold text-wedding-gold/80 italic font-serif pr-14 md:pr-0">Arkansas, USA</span>
                 </div>
 
-                {/* 2. Main Title */}
-                <div className="relative z-40 text-center mb-4">
-                    <h1 className="font-serif text-[15vw] md:text-[120px] leading-[0.8] text-wedding-gold tracking-tighter uppercase font-light italic drop-shadow-2xl">
+                {/* 2. Main Title: High placement */}
+                <div className="relative z-40 text-center mb-2 px-4">
+                    <h1 className="font-serif text-[12vw] md:text-[100px] leading-[0.8] text-wedding-gold tracking-tighter uppercase font-light italic drop-shadow-2xl">
                         Nuestra <br /> <span className="not-italic font-normal">Boda</span>
                     </h1>
                 </div>
@@ -33,71 +28,74 @@ export default function MagazineStyle({ onNext }: { onNext?: () => void }) {
                 {/* 3. The Visual Center (Photo + Overlays) */}
                 <div
                     onClick={onNext}
-                    className="relative flex-grow overflow-hidden border border-wedding-gold/20 cursor-pointer group shadow-[0_0_50px_rgba(0,0,0,0.5)]"
+                    className="relative flex-grow mx-4 overflow-hidden rounded-sm border border-wedding-gold/10 cursor-pointer group shadow-[0_30px_60px_-15px_rgba(0,0,0,1)]"
                 >
                     <img
                         src="/WV1/magazine.jpg?v=4"
                         alt="José & Abigail"
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover grayscale-[10%] group-hover:grayscale-0 transition-all duration-1000"
                     />
 
-                    {/* Shadow Fade Overlay - Fixes visibility for the white sky and white shirts */}
-                    <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/80 z-10" />
+                    {/* Shadow Gradients: Focused only on top/bottom edges to keep faces clear */}
+                    <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent via-[30%] via-transparent to-black/70 z-10" />
 
-                    {/* Sky Overlay: "Reserva la fecha" at the top right, "Una vida juntos" lower and larger */}
-                    <div className="absolute top-6 right-6 z-20 text-right">
-                        <span className="text-[10px] tracking-[0.4em] uppercase font-bold text-wedding-gold drop-shadow-lg">RESERVA LA FECHA</span>
-                        <p className="font-serif text-2xl italic text-white drop-shadow-lg">20 de Marzo</p>
-                    </div>
-
-                    <div className="absolute top-[25%] left-0 w-full z-20 text-center px-6">
-                        <motion.h3
-                            initial={{ scale: 0.9, opacity: 0 }}
-                            whileInView={{ scale: 1, opacity: 1 }}
-                            className="text-[14px] md:text-[18px] tracking-[1.2em] uppercase text-white font-light drop-shadow-[0_0_15px_rgba(0,0,0,1)] border-y border-white/20 py-4"
+                    {/* Sky Overlay: "Una Vida Juntos" - Top center, very thin and elegant */}
+                    <div className="absolute top-8 left-0 w-full z-20 text-center px-4">
+                        <motion.span
+                            initial={{ opacity: 0 }}
+                            whileInView={{ opacity: 0.8 }}
+                            transition={{ delay: 1 }}
+                            className="text-[9px] md:text-[12px] tracking-[1em] uppercase text-white font-light drop-shadow-lg"
                         >
                             Una Vida Juntos
-                        </motion.h3>
+                        </motion.span>
                     </div>
 
-                    {/* Names + History: Enhanced with black glow for visibility on white background */}
-                    <div className="absolute bottom-10 left-6 z-20 max-w-[70%]">
-                        <div className="bg-black/40 backdrop-blur-sm p-4 rounded-r-xl border-l-4 border-wedding-gold">
-                            <h2 className="font-serif text-4xl md:text-6xl italic leading-none text-wedding-gold drop-shadow-lg">
-                                José & <br /> Abigail
+                    {/* Date: Top Right, away from faces */}
+                    <div className="absolute top-6 right-6 z-20 text-right">
+                        <span className="text-[8px] tracking-[0.3em] uppercase font-bold text-wedding-gold/80 block">RESERVA LA FECHA</span>
+                        <p className="font-serif text-xl italic text-white drop-shadow-md">20 de Marzo</p>
+                    </div>
+
+                    {/* Names: Moved to the very bottom left corner, avoiding faces completely */}
+                    <div className="absolute bottom-6 left-6 z-20">
+                        <div className="border-l-2 border-wedding-gold/50 pl-4">
+                            <h2 className="font-serif text-3xl md:text-6xl italic leading-none text-white drop-shadow-lg">
+                                <span className="gold-text not-italic">José &</span> <br /> Abigail
                             </h2>
-                            <p className="text-[11px] md:text-[14px] tracking-[0.3em] uppercase mt-2 font-bold text-white drop-shadow-lg">
+                            <p className="text-[10px] tracking-[0.3em] uppercase mt-2 font-bold text-wedding-gold/60">
                                 Nuestra Historia de Amor
                             </p>
                         </div>
                     </div>
 
-                    {/* JUMPING ACTION BUTTON: On the right side/dress area as requested */}
+                    {/* JUMPING ACTION BUTTON: Moved to bottom right corner, far from faces */}
                     <motion.div
                         animate={{
                             scale: [1, 1.1, 1],
-                            y: [0, -10, 0]
+                            y: [0, -8, 0]
                         }}
                         transition={{
-                            duration: 1.5,
+                            duration: 2,
                             repeat: Infinity,
                             ease: "easeInOut"
                         }}
-                        className="absolute bottom-[20%] right-6 z-30"
+                        className="absolute bottom-8 right-6 z-30"
                     >
-                        <div className="flex flex-col items-center gap-2">
-                            <div className="flex items-center justify-center w-20 h-20 rounded-full bg-wedding-gold text-black shadow-[0_0_30px_rgba(197,160,89,0.5)] border-4 border-white/20">
-                                <span className="text-[11px] font-black uppercase tracking-tighter">ABRIR</span>
+                        <div className="flex flex-col items-center gap-1 group">
+                            <div className="flex items-center justify-center w-16 h-16 rounded-full bg-wedding-gold text-black shadow-[0_0_25px_rgba(197,160,89,0.3)] border-2 border-white/20">
+                                <span className="text-[10px] font-black uppercase tracking-tighter">ABRIR</span>
                             </div>
-                            <span className="text-[8px] tracking-[0.3em] text-white font-bold bg-black/60 px-2 py-1 rounded">TOCA AQUÍ</span>
+                            <span className="text-[7px] tracking-[0.2em] text-white/50 font-bold uppercase py-1">Toca Aquí</span>
                         </div>
                     </motion.div>
                 </div>
 
-                {/* 4. Footer Message */}
-                <div className="flex justify-between items-center py-4 z-40">
-                    <span className="text-[9px] md:text-[11px] tracking-[0.1em] uppercase font-bold text-wedding-gold italic font-serif">"Lo que Dios une, no lo separa el hombre"</span>
-                    <span className="text-[10px] tracking-[0.5em] uppercase font-bold text-wedding-gold/60 ml-4">2026</span>
+                {/* 4. Footer Verse: Clean and minimal */}
+                <div className="px-6 py-6 text-center z-40">
+                    <p className="text-[9px] md:text-[11px] tracking-[0.3em] uppercase font-bold text-wedding-gold italic font-serif opacity-60">
+                        "Lo que Dios une, no lo separa el hombre"
+                    </p>
                 </div>
             </motion.div>
         </section>
