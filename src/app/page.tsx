@@ -58,8 +58,17 @@ function WeddingExperience() {
 
     const next = () => {
         setStep(s => s + 1);
-        window.scrollTo({ top: 0, behavior: "instant" });
     };
+
+    useEffect(() => {
+        // Force scroll to top instantly whenever step changes
+        const timer = setTimeout(() => {
+            window.scrollTo(0, 0);
+            document.documentElement.scrollTop = 0;
+            document.body.scrollTop = 0;
+        }, 50);
+        return () => clearTimeout(timer);
+    }, [step]);
 
     const steps = [
         <Intro key="intro" onNext={next} guestName={guestName} />,
@@ -71,7 +80,7 @@ function WeddingExperience() {
     ];
 
     return (
-        <div className="bg-black min-h-screen relative overflow-hidden">
+        <div className="bg-black min-h-screen relative">
             {/* Option 2: Gold Dust Particles Atmosphere */}
             <div className="gold-dust-container">
                 {[...Array(20)].map((_, i) => (
@@ -90,18 +99,18 @@ function WeddingExperience() {
             {/* Music starts playing after the first interaction or intro */}
             <MusicPlayer isPlaying={step > 0} externalAudioRef={audioRef} />
 
-            <div className="relative w-full overflow-hidden min-h-screen">
-                <AnimatePresence>
+            <div className="relative w-full">
+                <AnimatePresence mode="wait">
                     <motion.div
                         key={step}
-                        initial={{ opacity: 0, scale: 1.02 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0, scale: 0.98 }}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
                         transition={{
-                            duration: 1.2,
-                            ease: "easeInOut"
+                            duration: 0.6,
+                            ease: "easeOut"
                         }}
-                        className="w-full min-h-screen"
+                        className="w-full"
                     >
                         {steps[step]}
                     </motion.div>

@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export default function MagazineStyle({ onNext, guestName }: { onNext?: () => void, guestName?: string }) {
     return (
-        <section className="relative w-full min-h-screen bg-black flex flex-col items-center justify-center p-0 md:p-10 overflow-hidden font-sans">
+        <section className="relative w-full min-h-[100dvh] bg-black flex flex-col items-center justify-center p-0 md:p-10 overflow-hidden font-sans">
             {/* Full Height Magazine Container */}
             <motion.div
                 initial={{ opacity: 0 }}
