@@ -33,7 +33,8 @@ export default function TheProposal({ onNext, onDuck }: { onNext: () => void, on
                 <img
                     src="/WV1/IMG_0961.JPG"
                     alt="The Proposal"
-                    className="w-full h-full object-cover opacity-40 animate-kenburns"
+                    className={`w-full h-full object-cover transition-all duration-1000 ${hasWatchedVideo ? 'opacity-60 scale-100' : 'opacity-40 animate-kenburns'
+                        }`}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-black" />
             </div>
