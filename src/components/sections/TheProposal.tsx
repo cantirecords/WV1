@@ -8,6 +8,7 @@ import ProposalVideoModal from "../ProposalVideoModal";
 
 export default function TheProposal({ onNext, onDuck }: { onNext: () => void, onDuck: (duck: boolean) => void }) {
     const [isVideoOpen, setIsVideoOpen] = React.useState(false);
+    const [hasWatchedVideo, setHasWatchedVideo] = React.useState(false);
 
     const handleOpenVideo = () => {
         setIsVideoOpen(true);
@@ -15,6 +16,7 @@ export default function TheProposal({ onNext, onDuck }: { onNext: () => void, on
 
     const handleCloseVideo = () => {
         setIsVideoOpen(false);
+        setHasWatchedVideo(true);
     };
 
     return (
@@ -62,39 +64,42 @@ export default function TheProposal({ onNext, onDuck }: { onNext: () => void, on
                         <span className="text-wedding-gold font-normal not-italic tracking-[0.2em] uppercase text-2xl md:text-4xl mt-6 block">y ella dijo que sí.</span>"
                     </p>
 
-                    <div className="flex justify-center">
-                        <motion.button
-                            onClick={handleOpenVideo}
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                            className="bg-wedding-gold/10 hover:bg-wedding-gold/20 text-wedding-gold border border-wedding-gold/30 px-6 py-3 rounded-full flex items-center gap-3 transition-all"
-                        >
-                            <Play size={16} fill="currentColor" />
-                            <span className="font-sans text-[10px] tracking-[.3em] uppercase font-bold text-white">Toca para ver el video</span>
-                        </motion.button>
-                    </div>
+                    {!hasWatchedVideo && (
+                        <div className="flex justify-center">
+                            <motion.button
+                                onClick={handleOpenVideo}
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
+                                className="bg-wedding-gold/10 hover:bg-wedding-gold/20 text-wedding-gold border border-wedding-gold/30 px-6 py-3 rounded-full flex items-center gap-3 transition-all shadow-[0_0_20px_rgba(197,160,89,0.2)]"
+                            >
+                                <Play size={16} fill="currentColor" />
+                                <span className="font-sans text-[10px] tracking-[.3em] uppercase font-bold text-white">Toca para ver el video</span>
+                            </motion.button>
+                        </div>
+                    )}
                 </motion.div>
 
-                <div className="flex flex-col items-center gap-8 justify-center">
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        transition={{ delay: 1 }}
-                        className="flex flex-col items-center gap-2"
-                    >
+                {hasWatchedVideo && (
+                    <div className="flex flex-col items-center gap-8 justify-center">
                         <motion.div
-                            animate={{ x: [0, 10, 0] }}
-                            transition={{ repeat: Infinity, duration: 2 }}
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            className="flex flex-col items-center gap-2"
                         >
-                            <span className="font-sans text-[8px] tracking-[0.4em] uppercase text-wedding-gold/60">Arrastra para abrir →</span>
+                            <motion.div
+                                animate={{ x: [0, 10, 0] }}
+                                transition={{ repeat: Infinity, duration: 2 }}
+                            >
+                                <span className="font-sans text-[8px] tracking-[0.4em] uppercase text-wedding-gold/60">Arrastra para abrir la invitación →</span>
+                            </motion.div>
+                            <SwipeButton
+                                onOpen={onNext}
+                                text="Abrir Invitación"
+                                variant="premium"
+                            />
                         </motion.div>
-                        <SwipeButton
-                            onOpen={onNext}
-                            text="Nuestra Invitación"
-                            variant="premium"
-                        />
-                    </motion.div>
-                </div>
+                    </div>
+                )}
             </div>
 
             {/* Subtle glow orb */}
