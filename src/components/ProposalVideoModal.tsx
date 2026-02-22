@@ -38,7 +38,7 @@ export default function ProposalVideoModal({ isOpen, onClose, videoUrl, onDuck }
             }
             if (onDuck) onDuck(false); // Ensure music restores if closed manually
         }
-    }, [isOpen]);
+    }, [isOpen, onDuck]);
 
     const handleTimeUpdate = () => {
         if (!videoRef.current) return;
@@ -47,17 +47,10 @@ export default function ProposalVideoModal({ isOpen, onClose, videoUrl, onDuck }
         const duration = videoRef.current.duration || 100;
 
         if (onDuck) {
-            // Exact timeline user requested for ducking: only between 6s and 10s
-            if (current >= 6 && current <= 10) {
-                if (!hasDucked) {
-                    setHasDucked(true);
-                    onDuck(true); // Fades music to 10%
-                }
-            } else if (current > 10) {
-                if (!hasFadedUp) {
-                    setHasFadedUp(true);
-                    onDuck(false); // Fades music back to 100% slowly over 5s
-                }
+            // Fade UP 2 seconds before the specific heart transition starts
+            if (duration > 0 && current >= duration - 2 && !hasFadedUp) {
+                setHasFadedUp(true);
+                onDuck(false); // Fades music back to 100%
             }
         }
 
