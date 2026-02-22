@@ -17,13 +17,14 @@ function WeddingExperience() {
 
     const next = () => {
         setStep(s => s + 1);
+        window.scrollTo({ top: 0, behavior: "instant" });
     };
 
     const steps = [
         <Intro key="intro" onNext={next} guestName={guestName} />,
         <StoryTimeline key="story" onNext={next} />,
-        <TheProposal key="proposal" onNext={next} />,
         <Honors key="honors" onNext={next} />,
+        <TheProposal key="proposal" onNext={next} />,
         <Invitation key="invitation" />
     ];
 
@@ -32,21 +33,17 @@ function WeddingExperience() {
             {/* Music starts playing after the first interaction or intro */}
             <MusicPlayer isPlaying={step > 0} />
 
-            <AnimatePresence
-                mode="wait"
-                onExitComplete={() => window.scrollTo({ top: 0, behavior: "instant" })}
-            >
+            <div className="relative w-full">
                 <motion.div
                     key={step}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -20 }}
-                    transition={{ duration: 0.8, ease: "easeInOut" }}
-                    className="w-full min-h-screen"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 1 }}
+                    className="w-full"
                 >
                     {steps[step]}
                 </motion.div>
-            </AnimatePresence>
+            </div>
 
             {/* Navigation Progress Dots */}
             <div className="fixed bottom-10 left-1/2 -translate-x-1/2 z-[100] flex gap-3 px-6 py-3 rounded-full glass border-wedding-gold/10">
@@ -58,7 +55,10 @@ function WeddingExperience() {
                             backgroundColor: step === i ? "#c5a059" : "rgba(197, 160, 89, 0.2)"
                         }}
                         className="h-2 rounded-full cursor-pointer transition-all duration-500"
-                        onClick={() => setStep(i)}
+                        onClick={() => {
+                            setStep(i);
+                            window.scrollTo({ top: 0, behavior: "instant" });
+                        }}
                     />
                 ))}
             </div>

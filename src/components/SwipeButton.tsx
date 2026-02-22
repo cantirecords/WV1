@@ -54,21 +54,21 @@ export default function SwipeButton({ onOpen, text, variant = "default", classNa
     const handleDragEnd = async () => {
         const currentX = x.get();
         const maxDrag = containerWidth - THUMB_SIZE;
-        const threshold = maxDrag * 0.7; // 70% to unlock
+        const threshold = maxDrag * 0.5; // Lower to 50% for easier unlock on mobile
 
         if (currentX >= threshold) {
             setIsUnlocked(true);
+
+            // Fire event immediately
+            onOpen();
+
             await controls.start({ x: maxDrag, transition: { type: "spring", stiffness: 300, damping: 20 } });
 
-            // Trigger action after a tiny delay for visual completion
+            // Reset quickly without animation behind the scene if they come back
             setTimeout(() => {
-                onOpen();
-                // Reset quickly without animation behind the scene if they come back
-                setTimeout(() => {
-                    setIsUnlocked(false);
-                    x.set(0);
-                }, 500);
-            }, 300);
+                setIsUnlocked(false);
+                x.set(0);
+            }, 500);
         } else {
             // Snap back
             controls.start({ x: 0, transition: { type: "spring", stiffness: 300, damping: 20 } });

@@ -76,7 +76,7 @@ export default function Intro({ onNext, guestName }: IntroProps) {
                     >
                         <div className="w-px h-16 bg-gradient-to-b from-transparent via-white to-white" />
                         <span className="font-sans text-[10px] tracking-[0.5em] uppercase text-white font-bold">
-                            Desliza
+                            Desliza hacia arriba ↑
                         </span>
                     </motion.div>
                 </motion.div>
@@ -121,7 +121,7 @@ export default function Intro({ onNext, guestName }: IntroProps) {
                             className="text-wedding-gold/80 flex flex-col items-center gap-2"
                         >
                             <Turtle size={48} strokeWidth={1} className="drop-shadow-[0_0_10px_rgba(197,160,89,0.5)]" />
-                            <span className="font-sans text-[8px] tracking-[0.4em] uppercase opacity-60">Desliza para abrir</span>
+                            <span className="font-sans text-[8px] tracking-[0.4em] uppercase opacity-60">Arrastra para abrir →</span>
                         </motion.div>
 
                         <SwipeButton

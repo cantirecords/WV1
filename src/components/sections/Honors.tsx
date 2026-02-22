@@ -71,13 +71,24 @@ export default function Honors({ onNext }: { onNext: () => void }) {
                 </div>
 
                 {/* Closing Message */}
-                <div className="text-center pt-16">
+                <div className="text-center pt-24">
                     <motion.button
                         onClick={onNext}
                         whileHover={{ scale: 1.05 }}
-                        className="text-wedding-gold font-sans text-[10px] tracking-[0.6em] uppercase border-b border-wedding-gold/20 pb-2 hover:border-wedding-gold transition-all"
+                        whileTap={{ scale: 0.95 }}
+                        className="group flex flex-col items-center gap-6 mx-auto"
                     >
-                        La Ceremonia Civil
+                        <span className="font-sans text-[10px] tracking-[0.6em] uppercase text-wedding-gold font-bold">
+                            Toca para continuar →
+                        </span>
+                        <div className="w-12 h-12 rounded-full border border-wedding-gold/40 flex items-center justify-center group-hover:border-wedding-gold transition-colors shadow-[0_0_15px_rgba(197,160,89,0.2)]">
+                            <motion.div
+                                animate={{ x: [0, 5, 0] }}
+                                transition={{ repeat: Infinity, duration: 1.5 }}
+                            >
+                                <Heart size={20} className="text-wedding-gold" />
+                            </motion.div>
+                        </div>
                     </motion.button>
                 </div>
 

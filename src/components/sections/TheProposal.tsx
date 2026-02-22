@@ -50,13 +50,19 @@ export default function TheProposal({ onNext }: { onNext: () => void }) {
                     </p>
                 </motion.div>
 
-                <div className="flex justify-center">
+                <div className="flex flex-col items-center gap-8 justify-center">
                     <motion.div
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 1, delay: 1.5 }}
+                        transition={{ delay: 2 }}
+                        className="flex flex-col items-center gap-2"
                     >
+                        <motion.div
+                            animate={{ x: [0, 10, 0] }}
+                            transition={{ repeat: Infinity, duration: 2 }}
+                        >
+                            <span className="font-sans text-[8px] tracking-[0.4em] uppercase text-wedding-gold/60">Arrastra para abrir →</span>
+                        </motion.div>
                         <SwipeButton
                             onOpen={onNext}
                             text="Nuestra Invitación"

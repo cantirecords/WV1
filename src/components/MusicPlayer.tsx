@@ -44,6 +44,18 @@ export default function MusicPlayer({ isPlaying: shouldPlay }: { isPlaying: bool
                 whileTap={{ scale: 0.9 }}
                 className={`group relative w-12 h-12 flex items-center justify-center rounded-full glass border transition-all duration-700 ${isPlaying ? 'border-wedding-gold/60' : 'border-white/10'}`}
             >
+                {!isPlaying && (
+                    <motion.div
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: [0, 1, 0], x: 0 }}
+                        transition={{ repeat: Infinity, duration: 2 }}
+                        className="absolute right-full mr-4 whitespace-nowrap"
+                    >
+                        <span className="font-sans text-[10px] tracking-widest text-wedding-gold uppercase font-bold bg-black/40 px-3 py-1 rounded-full border border-wedding-gold/20">
+                            Toca aquí para música 🔊
+                        </span>
+                    </motion.div>
+                )}
                 {isPlaying && (
                     <motion.div
                         initial={{ scale: 0.8, opacity: 0.3 }}

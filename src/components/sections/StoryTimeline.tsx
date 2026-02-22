@@ -95,14 +95,18 @@ export default function StoryTimeline({ onNext }: { onNext: () => void }) {
                         whileTap={{ scale: 0.95 }}
                         className="group flex flex-col items-center gap-6"
                     >
-                        <span className="font-sans text-[10px] tracking-[0.6em] uppercase text-white/40 group-hover:text-wedding-gold transition-colors">
-                            El momento de la verdad
+                        <span className="font-sans text-[10px] tracking-[0.6em] uppercase text-wedding-gold font-bold">
+                            Toca aquí para continuar ↓
                         </span>
-                        <div className="w-12 h-12 rounded-full border border-wedding-gold/20 flex items-center justify-center group-hover:border-wedding-gold transition-colors">
+                        <motion.div
+                            animate={{ y: [0, 5, 0] }}
+                            transition={{ repeat: Infinity, duration: 1.5 }}
+                            className="w-12 h-12 rounded-full border border-wedding-gold/40 flex items-center justify-center group-hover:border-wedding-gold transition-colors shadow-[0_0_15px_rgba(197,160,89,0.2)]"
+                        >
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-wedding-gold">
                                 <path d="M7 13l5 5 5-5M7 6l5 5 5-5" />
                             </svg>
-                        </div>
+                        </motion.div>
                     </motion.button>
                 </div>
             </div>
