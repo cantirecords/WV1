@@ -273,115 +273,94 @@ export default function Invitation() {
                 </motion.div>
             </div>
 
-            {/* Mascots Container - Fun & Vibrant Background Elements */}
-            <div className="absolute inset-0 pointer-events-none overflow-hidden z-20">
-                {/* Abigail's Turtle - Walking along the bottom from left to right */}
-                {/* Note: scale-x-[-1] flips the emoji so it faces the right direction */}
+            {/* Refined Footer Mascots & Cinematic Surprise */}
+            <div className="absolute inset-x-0 bottom-0 h-[400px] pointer-events-none overflow-hidden z-20">
+
+                {/* 1. The Big Floating Surprise (Like iPhone iMessage effects) */}
+                <motion.div
+                    initial={{ y: 200, opacity: 0, scale: 0.5 }}
+                    whileInView={{
+                        y: [-20, -600],
+                        opacity: [0, 1, 0.8, 0],
+                        scale: [0.8, 1.5, 2]
+                    }}
+                    viewport={{ once: false, amount: 0.1 }}
+                    transition={{ duration: 10, ease: "easeOut" }}
+                    className="absolute left-1/2 -translate-x-1/2 bottom-0 text-[120px] drop-shadow-[0_0_50px_rgba(197,160,89,0.3)]"
+                >
+                    💝
+                </motion.div>
+
+                {/* 2. Abigail's Turtle - Walking to the right (fixed direction) */}
                 <motion.div
                     animate={{ x: ["-10vw", "110vw"] }}
-                    transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-                    className="absolute bottom-10 px-4 text-3xl scale-x-[-1]"
+                    transition={{ duration: 32, repeat: Infinity, ease: "linear" }}
+                    className="absolute bottom-6 text-3xl scale-x-[-1]"
                 >
                     🐢
                 </motion.div>
 
-                {/* Jose's Soccer Ball - Bouncing slightly across */}
+                {/* 3. Jose's Soccer Ball - Gentler, more natural movement */}
                 <motion.div
                     animate={{
                         x: ["-20vw", "120vw"],
-                        y: [0, -40, 0],
+                        y: [0, -25, 0],
                         rotate: 360
                     }}
                     transition={{
-                        x: { duration: 18, repeat: Infinity, ease: "linear" },
-                        y: { duration: 0.6, repeat: Infinity, ease: "easeOut" },
-                        rotate: { duration: 1.5, repeat: Infinity, ease: "linear" }
+                        x: { duration: 25, repeat: Infinity, ease: "linear" },
+                        y: { duration: 1.5, repeat: Infinity, ease: "easeInOut" },
+                        rotate: { duration: 5, repeat: Infinity, ease: "linear" }
                     }}
-                    className="absolute bottom-12 px-4 text-2xl"
+                    className="absolute bottom-8 text-2xl"
                 >
                     ⚽
                 </motion.div>
 
-                {/* 3 Fishes floating up, fading in and out */}
+                {/* 4. Three Little Fishes swimming subtly in the footer area */}
                 <motion.div
-                    animate={{ y: ["100vh", "-20vh"], opacity: [0, 1, 0], x: [0, 30, -30, 0] }}
-                    transition={{
-                        y: { duration: 15, repeat: Infinity, ease: "linear", delay: 1 },
-                        opacity: { duration: 15, repeat: Infinity, ease: "easeInOut", delay: 1 },
-                        x: { duration: 6, repeat: Infinity, ease: "easeInOut" }
-                    }}
-                    className="absolute left-[15%] text-2xl scale-x-[-1]"
+                    animate={{ x: [20, -20, 20], y: [0, -10, 0] }}
+                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                    className="absolute bottom-20 left-[20%] text-2xl opacity-40 scale-x-[-1]"
                 >
                     🐠
                 </motion.div>
                 <motion.div
-                    animate={{ y: ["100vh", "-20vh"], opacity: [0, 1, 0], x: [0, -20, 20, 0] }}
-                    transition={{
-                        y: { duration: 18, repeat: Infinity, ease: "linear", delay: 5 },
-                        opacity: { duration: 18, repeat: Infinity, ease: "easeInOut", delay: 5 },
-                        x: { duration: 5, repeat: Infinity, ease: "easeInOut" }
-                    }}
-                    className="absolute left-[45%] text-xl scale-x-[-1]"
+                    animate={{ x: [-15, 15, -15], y: [0, -8, 0] }}
+                    transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                    className="absolute bottom-32 left-[50%] text-xl opacity-30 scale-x-[-1]"
                 >
                     🐟
                 </motion.div>
                 <motion.div
-                    animate={{ y: ["100vh", "-20vh"], opacity: [0, 1, 0], x: [0, 40, -40, 0] }}
-                    transition={{
-                        y: { duration: 22, repeat: Infinity, ease: "linear", delay: 8 },
-                        opacity: { duration: 22, repeat: Infinity, ease: "easeInOut", delay: 8 },
-                        x: { duration: 7, repeat: Infinity, ease: "easeInOut" }
-                    }}
-                    className="absolute left-[75%] text-2xl scale-x-[-1]"
+                    animate={{ x: [25, -25, 25], y: [0, -12, 0] }}
+                    transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+                    className="absolute bottom-16 right-[20%] text-2xl opacity-40 scale-x-[-1]"
                 >
                     🐡
                 </motion.div>
 
-                {/* Balloons floating up */}
-                <motion.div
-                    animate={{ y: ["100vh", "-20vh"], opacity: [0, 1, 0], rotate: [-10, 10, -10] }}
-                    transition={{ duration: 20, repeat: Infinity, ease: "linear", delay: 0 }}
-                    className="absolute left-[25%] text-3xl"
-                >
-                    🎈
-                </motion.div>
-                <motion.div
-                    animate={{ y: ["100vh", "-20vh"], opacity: [0, 1, 0], rotate: [10, -10, 10] }}
-                    transition={{ duration: 25, repeat: Infinity, ease: "linear", delay: 7 }}
-                    className="absolute right-[20%] text-4xl"
-                >
-                    🎈
-                </motion.div>
-
-                {/* Hearts floating up with pulse and fade */}
-                <motion.div
-                    animate={{ y: ["100vh", "-20vh"], opacity: [0, 1, 0], scale: [0.8, 1.2, 0.8] }}
-                    transition={{ duration: 17, repeat: Infinity, ease: "easeInOut", delay: 3 }}
-                    className="absolute left-[60%] text-2xl"
-                >
-                    ❤️
-                </motion.div>
-                <motion.div
-                    animate={{ y: ["100vh", "-20vh"], opacity: [0, 1, 0], scale: [0.8, 1.2, 0.8] }}
-                    transition={{ duration: 21, repeat: Infinity, ease: "easeInOut", delay: 10 }}
-                    className="absolute right-[10%] text-3xl"
-                >
-                    🤍
-                </motion.div>
-                <motion.div
-                    animate={{ y: ["100vh", "-20vh"], opacity: [0, 1, 0], scale: [0.8, 1.2, 0.8] }}
-                    transition={{ duration: 19, repeat: Infinity, ease: "easeInOut", delay: 14 }}
-                    className="absolute left-[5%] text-2xl"
-                >
-                    ✨
-                </motion.div>
-                <motion.div
-                    animate={{ y: ["100vh", "-20vh"], opacity: [0, 1, 0], scale: [0.8, 1.2, 0.8] }}
-                    transition={{ duration: 23, repeat: Infinity, ease: "easeInOut", delay: 6 }}
-                    className="absolute right-[40%] text-3xl"
-                >
-                    💛
-                </motion.div>
+                {/* 5. Floating Hearts and Balloons - Fading in/out only at the end */}
+                {[...Array(5)].map((_, i) => (
+                    <motion.div
+                        key={i}
+                        animate={{
+                            y: [0, -300],
+                            opacity: [0, 0.7, 0],
+                            x: Math.sin(i) * 30
+                        }}
+                        transition={{
+                            duration: 5 + i,
+                            repeat: Infinity,
+                            ease: "linear",
+                            delay: i * 2
+                        }}
+                        className="absolute bottom-0 text-xl"
+                        style={{ left: `${10 + (i * 20)}%` }}
+                    >
+                        {i % 2 === 0 ? "🎈" : "❤️"}
+                    </motion.div>
+                ))}
             </div>
 
             <div className="absolute bottom-0 left-0 w-full h-[30vh] bg-gradient-to-t from-wedding-gold/10 via-transparent to-transparent pointer-events-none" />
