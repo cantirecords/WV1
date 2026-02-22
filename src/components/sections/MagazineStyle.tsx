@@ -41,7 +41,20 @@ export default function MagazineStyle({ onNext }: { onNext?: () => void }) {
                         className="w-full h-full object-cover scale-105 group-hover:scale-100 transition-transform duration-[2s]"
                     />
 
-                    {/* Overlay Text elements */}
+                    {/* Sky Overlay Text (Elegant and Minimalist) */}
+                    <div className="absolute top-12 left-0 w-full z-30 text-center pointer-events-none">
+                        <motion.div
+                            initial={{ opacity: 0, y: -10 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 1, duration: 1 }}
+                            className="space-y-2"
+                        >
+                            <span className="block text-[10px] tracking-[1em] uppercase text-white font-bold drop-shadow-lg">UNA VIDA JUNTOS</span>
+                            <div className="w-8 h-px bg-wedding-gold mx-auto opacity-50" />
+                        </motion.div>
+                    </div>
+
+                    {/* Overlay Text elements - Bottom */}
                     <div className="absolute bottom-6 left-6 md:bottom-10 md:left-10 z-30 text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]">
                         <motion.h2
                             initial={{ x: -20, opacity: 0 }}

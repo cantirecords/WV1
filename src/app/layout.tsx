@@ -8,18 +8,18 @@ const cursive = Pinyon_Script({ weight: "400", subsets: ["latin"], variable: "--
 
 export const metadata: Metadata = {
     title: "José & Abigail | Edición Especial de Boda",
-    description: "Una edición especial para un día inolvidable. Abriendo nuestra invitación oficial.",
+    description: "Una edición especial para un día inolvidable. ¡Toca aquí para abrir nuestra invitación!",
     openGraph: {
         title: "✨ LA BODA: José & Abigail",
-        description: "Invitación Digital Oficial | Edición Especial",
+        description: "Invitación Digital Oficial | Edición Especial — Toca para abrir",
         url: "https://cantirecords.github.io/WV1/",
         siteName: "Revista de Boda",
         images: [
             {
-                url: "https://cantirecords.github.io/WV1/magazine.JPG",
+                url: "https://cantirecords.github.io/WV1/magazine.JPG?v=3",
                 width: 1200,
-                height: 630,
-                alt: "José & Abigail Boda",
+                height: 1600,
+                alt: "Invitación de Boda José & Abigail",
             },
         ],
         locale: "es_ES",
@@ -28,8 +28,8 @@ export const metadata: Metadata = {
     twitter: {
         card: "summary_large_image",
         title: "Boda de José & Abigail",
-        description: "Nuestra invitación oficial.",
-        images: ["https://cantirecords.github.io/WV1/magazine.JPG"],
+        description: "Nuestra invitación oficial — Toca para abrir.",
+        images: ["https://cantirecords.github.io/WV1/magazine.JPG?v=3"],
     },
     appleWebApp: {
         capable: true,
