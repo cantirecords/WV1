@@ -90,18 +90,18 @@ function WeddingExperience() {
             {/* Music starts playing after the first interaction or intro */}
             <MusicPlayer isPlaying={step > 0} externalAudioRef={audioRef} />
 
-            <div className="relative w-full overflow-hidden">
-                <AnimatePresence mode="wait">
+            <div className="relative w-full overflow-hidden min-h-screen">
+                <AnimatePresence>
                     <motion.div
                         key={step}
-                        initial={{ opacity: 0, scale: 1.05, filter: "blur(10px)" }}
-                        animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-                        exit={{ opacity: 0, scale: 0.95, filter: "blur(10px)" }}
+                        initial={{ opacity: 0, scale: 1.02 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.98 }}
                         transition={{
-                            duration: 1.5,
-                            ease: [0.43, 0.13, 0.23, 0.96]
+                            duration: 1.2,
+                            ease: "easeInOut"
                         }}
-                        className="w-full"
+                        className="w-full min-h-screen"
                     >
                         {steps[step]}
                     </motion.div>

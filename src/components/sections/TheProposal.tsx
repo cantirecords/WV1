@@ -41,7 +41,7 @@ export default function TheProposal({ onNext, onDuck }: { onNext: () => void, on
             <div className="relative z-10 text-center px-6 max-w-4xl space-y-16">
                 <motion.div
                     initial={{ opacity: 0, scale: 0.95 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
+                    animate={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
                     transition={{ duration: 1.5 }}
                     className="space-y-4"

@@ -8,7 +8,7 @@ export default function MagazineStyle({ onNext, guestName }: { onNext?: () => vo
             {/* Full Height Magazine Container */}
             <motion.div
                 initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
+                animate={{ opacity: 1 }}
                 transition={{ duration: 1.5 }}
                 className="relative w-full h-full min-h-screen bg-[#060606] flex flex-col pt-14 pb-12 overflow-hidden"
             >
