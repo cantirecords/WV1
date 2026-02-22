@@ -50,6 +50,22 @@ export default function Honors({ onNext }: { onNext: () => void }) {
                     </motion.p>
                 </div>
 
+                {/* Parents Photo */}
+                <motion.div
+                    initial={{ opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 1.5 }}
+                    className="relative w-full aspect-video md:aspect-[21/9] rounded-[40px] overflow-hidden shadow-2xl border border-wedding-gold/10"
+                >
+                    <img
+                        src="/WV1/Padres.JPG"
+                        alt="Nuestros Padres"
+                        className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" />
+                </motion.div>
+
                 {/* Cards */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
                     {cards.map((card, i) => (

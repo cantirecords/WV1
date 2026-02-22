@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, Suspense, useEffect } from "react";
+import { useState, Suspense, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Intro from "@/components/sections/Intro";
 import StoryTimeline from "@/components/sections/StoryTimeline";
@@ -12,8 +12,32 @@ import { useSearchParams } from "next/navigation";
 
 function WeddingExperience() {
     const [step, setStep] = useState(0);
+    const [isDucked, setIsDucked] = useState(false);
+    const audioRef = useRef<HTMLAudioElement | null>(null);
     const searchParams = useSearchParams();
     const guestName = searchParams.get("guest") || "Familia";
+
+    useEffect(() => {
+        if (audioRef.current) {
+            const targetVolume = isDucked ? 0.1 : 1.0;
+            const currentVolume = audioRef.current.volume;
+
+            // Simple fade logic
+            const step = isDucked ? -0.05 : 0.05;
+            const interval = setInterval(() => {
+                if (audioRef.current) {
+                    const nextVolume = audioRef.current.volume + step;
+                    if ((step > 0 && nextVolume >= targetVolume) || (step < 0 && nextVolume <= targetVolume)) {
+                        audioRef.current.volume = targetVolume;
+                        clearInterval(interval);
+                    } else {
+                        audioRef.current.volume = Math.max(0, Math.min(1, nextVolume));
+                    }
+                }
+            }, 50);
+            return () => clearInterval(interval);
+        }
+    }, [isDucked]);
 
     const next = () => {
         setStep(s => s + 1);
@@ -24,14 +48,14 @@ function WeddingExperience() {
         <Intro key="intro" onNext={next} guestName={guestName} />,
         <StoryTimeline key="story" onNext={next} />,
         <Honors key="honors" onNext={next} />,
-        <TheProposal key="proposal" onNext={next} />,
+        <TheProposal key="proposal" onNext={next} onDuck={setIsDucked} />,
         <Invitation key="invitation" />
     ];
 
     return (
         <div className="bg-black min-h-screen">
             {/* Music starts playing after the first interaction or intro */}
-            <MusicPlayer isPlaying={step > 0} />
+            <MusicPlayer isPlaying={step > 0} externalAudioRef={audioRef} />
 
             <div className="relative w-full">
                 <motion.div

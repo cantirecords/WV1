@@ -35,9 +35,9 @@ export default function Intro({ onNext, guestName }: IntroProps) {
     }, []);
 
     return (
-        <section ref={containerRef} className="relative w-full h-[100dvh] bg-black overflow-hidden">
-            {/* 1. Sticky Background Layer (Now effectively just absolute since height is 100vh) */}
-            <div className="absolute inset-0 h-screen w-full overflow-hidden flex items-center justify-center">
+        <section ref={containerRef} className="relative w-full h-[200dvh] bg-black">
+            {/* Background & Content Wrapper (Sticky) */}
+            <div className="sticky top-0 h-[100dvh] w-full overflow-hidden flex items-center justify-center">
                 <motion.video
                     ref={videoRef}
                     style={{ opacity: videoOpacity }}
@@ -45,11 +45,6 @@ export default function Intro({ onNext, guestName }: IntroProps) {
                     loop
                     muted
                     playsInline
-                    onEnded={(e) => {
-                        const vid = e.target as HTMLVideoElement;
-                        vid.currentTime = 0;
-                        vid.play().catch(() => { });
-                    }}
                     className="absolute inset-0 w-full h-full object-cover"
                 >
                     <source src="/WV1/propuesta.mp4" type="video/mp4" />
@@ -64,10 +59,10 @@ export default function Intro({ onNext, guestName }: IntroProps) {
                 {/* Constant gradient for depth */}
                 <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/60" />
 
-                {/* Initial "Swipe Down" Prompt */}
+                {/* Initial "Swipe Up" Prompt - Visible at the very start, disappears on scroll */}
                 <motion.div
                     style={{ opacity: promptOpacity }}
-                    className="absolute inset-x-0 bottom-24 flex flex-col items-center justify-center z-10 pointer-events-none"
+                    className="absolute inset-x-0 bottom-24 flex flex-col items-center justify-center z-30 pointer-events-none"
                 >
                     <motion.div
                         animate={{ y: [0, 10, 0] }}
@@ -81,7 +76,7 @@ export default function Intro({ onNext, guestName }: IntroProps) {
                     </motion.div>
                 </motion.div>
 
-                {/* 2. Floating Content Layer (Inside sticky container, using useTransform for scroll reveal) */}
+                {/* 2. Floating Content Layer - Revealed on scroll */}
                 <motion.div
                     style={{ opacity: textOpacity, y: textY }}
                     className="relative z-20 text-center px-6 max-w-5xl w-full flex flex-col items-center pointer-events-none"
@@ -108,9 +103,6 @@ export default function Intro({ onNext, guestName }: IntroProps) {
 
                     <motion.div
                         className="relative flex flex-col items-center gap-8 pointer-events-auto"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 1 }}
                     >
                         {/* Turtle Guide */}
                         <motion.div
@@ -120,7 +112,6 @@ export default function Intro({ onNext, guestName }: IntroProps) {
                             transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
                             className="text-wedding-gold/80 flex flex-col items-center gap-2"
                         >
-                            <Turtle size={48} strokeWidth={1} className="drop-shadow-[0_0_10px_rgba(197,160,89,0.5)]" />
                             <span className="font-sans text-[8px] tracking-[0.4em] uppercase opacity-60">Arrastra para abrir →</span>
                         </motion.div>
 

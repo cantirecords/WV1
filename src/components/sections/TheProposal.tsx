@@ -3,10 +3,30 @@
 import React from "react";
 import { motion } from "framer-motion";
 import SwipeButton from "../SwipeButton";
+import { Play } from "lucide-react";
+import ProposalVideoModal from "../ProposalVideoModal";
 
-export default function TheProposal({ onNext }: { onNext: () => void }) {
+export default function TheProposal({ onNext, onDuck }: { onNext: () => void, onDuck: (duck: boolean) => void }) {
+    const [isVideoOpen, setIsVideoOpen] = React.useState(false);
+
+    const handleOpenVideo = () => {
+        setIsVideoOpen(true);
+        onDuck(true);
+    };
+
+    const handleCloseVideo = () => {
+        setIsVideoOpen(false);
+        onDuck(false);
+    };
+
     return (
         <section className="relative h-[100dvh] w-full bg-black flex items-center justify-center overflow-hidden">
+            <ProposalVideoModal
+                isOpen={isVideoOpen}
+                onClose={handleCloseVideo}
+                videoUrl="/WV1/ella-dijo-si.mp4"
+            />
+
             {/* Dark Cinematic Photo Background */}
             <div className="absolute inset-0 z-0">
                 <img
@@ -36,25 +56,31 @@ export default function TheProposal({ onNext }: { onNext: () => void }) {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 1.2, delay: 0.5 }}
-                    className="space-y-12"
+                    className="space-y-8"
                 >
-                    <p className="font-serif text-2xl md:text-4xl text-white/90 italic font-light leading-relaxed">
+                    <p className="font-serif text-2xl md:text-3xl text-white/90 italic font-light leading-relaxed">
                         "En ese momento, rodeados de promesas, le pedí matrimonio... <br className="hidden md:block" />
-                        <span className="text-wedding-gold font-normal not-italic tracking-[0.2em] uppercase text-4xl md:text-6xl mt-6 block">y ella dijo que sí.</span>"
+                        <span className="text-wedding-gold font-normal not-italic tracking-[0.2em] uppercase text-2xl md:text-4xl mt-6 block">y ella dijo que sí.</span>"
                     </p>
 
-                    <div className="w-24 h-px bg-wedding-gold/30 mx-auto" />
-
-                    <p className="font-sans text-white/50 text-xs md:text-sm tracking-[0.4em] leading-loose uppercase">
-                        Un nuevo capítulo comenzó bajo la bendición de Dios.
-                    </p>
+                    <div className="flex justify-center">
+                        <motion.button
+                            onClick={handleOpenVideo}
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            className="bg-wedding-gold/10 hover:bg-wedding-gold/20 text-wedding-gold border border-wedding-gold/30 px-6 py-3 rounded-full flex items-center gap-3 transition-all"
+                        >
+                            <Play size={16} fill="currentColor" />
+                            <span className="font-sans text-[10px] tracking-[.3em] uppercase font-bold text-white">Toca para ver el video</span>
+                        </motion.button>
+                    </div>
                 </motion.div>
 
                 <div className="flex flex-col items-center gap-8 justify-center">
                     <motion.div
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1 }}
-                        transition={{ delay: 2 }}
+                        transition={{ delay: 1 }}
                         className="flex flex-col items-center gap-2"
                     >
                         <motion.div
@@ -77,3 +103,4 @@ export default function TheProposal({ onNext }: { onNext: () => void }) {
         </section>
     );
 }
+

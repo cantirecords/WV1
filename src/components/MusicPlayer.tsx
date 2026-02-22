@@ -4,10 +4,11 @@ import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Volume2, VolumeX } from "lucide-react";
 
-export default function MusicPlayer({ isPlaying: shouldPlay }: { isPlaying: boolean }) {
+export default function MusicPlayer({ isPlaying: shouldPlay, externalAudioRef }: { isPlaying: boolean, externalAudioRef?: React.RefObject<HTMLAudioElement | null> }) {
     const [isPlaying, setIsPlaying] = useState(false);
     const [hasInteracted, setHasInteracted] = useState(false);
-    const audioRef = useRef<HTMLAudioElement | null>(null);
+    const internalAudioRef = useRef<HTMLAudioElement | null>(null);
+    const audioRef = externalAudioRef || internalAudioRef;
 
     useEffect(() => {
         if (shouldPlay && !isPlaying && !hasInteracted) {
