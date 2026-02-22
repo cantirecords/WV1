@@ -51,18 +51,50 @@ body {
 .gold-shimmer-text {
   background: linear-gradient(90deg,
       #8e6d31 0%,
-      #e6c97a 20%,
-      #fef9c3 30%,
-      #e6c97a 40%,
-      #c5a059 60%,
-      #fef3c7 70%,
+      #e6c97a 15%,
+      #fff9e6 25%,
+      #e6c97a 35%,
+      #c5a059 50%,
+      #fff9e6 65%,
       #c5a059 80%,
       #8e6d31 100%);
   background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: shimmer-move 6s linear infinite;
+  animation: shimmer-move 4s linear infinite;
+}
+
+.gold-shimmer-border {
+  position: relative;
+  overflow: hidden;
+}
+
+.gold-shimmer-border::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg,
+      transparent 0%,
+      rgba(197, 160, 89, 0) 40%,
+      rgba(255, 249, 230, 0.4) 50%,
+      rgba(197, 160, 89, 0) 60%,
+      transparent 100%);
+  animation: shimmer-move-diag 4s infinite;
+  pointer-events: none;
+}
+
+@keyframes shimmer-move-diag {
+  0% {
+    transform: translate(-30%, -30%) rotate(0deg);
+  }
+
+  100% {
+    transform: translate(30%, 30%) rotate(0deg);
+  }
 }
 
 /* ─── Glassmorphism ─────────────────── */

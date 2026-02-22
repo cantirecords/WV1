@@ -65,6 +65,47 @@ export default function Honors({ onNext }: { onNext: () => void }) {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" />
                 </motion.div>
 
+                {/* Parents/Sibs Section */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20">
+                    {/* Parents Column */}
+                    <motion.div
+                        initial={{ opacity: 0, x: -30 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        className="space-y-12"
+                    >
+                        <div className="space-y-6">
+                            <h3 className="font-sans text-[10px] tracking-[0.5em] uppercase text-wedding-gold font-bold gold-shimmer-text">Padres del Novio</h3>
+                            <div className="space-y-2 border-l border-wedding-gold/20 pl-6 gold-shimmer-border py-4">
+                                <p className="font-serif text-2xl text-white font-light">José Ramón Cantillano</p>
+                                <p className="font-serif text-2xl text-white font-light">Mayra Araceli Pineda</p>
+                            </div>
+                        </div>
+
+                        <div className="space-y-6">
+                            <h3 className="font-sans text-[10px] tracking-[0.5em] uppercase text-wedding-gold font-bold gold-shimmer-text">Padres de la Novia</h3>
+                            <div className="space-y-2 border-r border-wedding-gold/20 pr-6 text-right md:text-left md:border-r-0 md:pr-0 md:border-l md:pl-6 gold-shimmer-border py-4">
+                                <p className="font-serif text-2xl text-white font-light">German Antonio Mejía</p>
+                                <p className="font-serif text-2xl text-white font-light">Dilcia Abigail García</p>
+                            </div>
+                        </div>
+                    </motion.div>
+
+                    {/* Siblings/Honors */}
+                    <motion.div
+                        initial={{ opacity: 0, x: 30 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        className="space-y-12"
+                    >
+                        <div className="space-y-6">
+                            <h3 className="font-sans text-[10px] tracking-[0.5em] uppercase text-wedding-gold font-bold gold-shimmer-text">En Compañía de sus hermanos</h3>
+                            <div className="space-y-2 border-l border-wedding-gold/20 pl-6 gold-shimmer-border py-4">
+                                <p className="font-serif text-xl text-white/80 font-light italic text-pretty">
+                                    Quienes han sido testigos y pilares de nuestra historia.
+                                </p>
+                            </div>
+                        </div>
+                    </motion.div>
+                </div>
                 {/* Cards */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
                     {cards.map((card, i) => (
